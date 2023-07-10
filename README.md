@@ -10,7 +10,7 @@ You can download Terraform (CLI) [here](https://developer.hashicorp.com/terrafor
 
 ## Support Matrix
 
-NVIDIA offers support for Kubernetes through [NVIDIA AI Enterprise](https://www.nvidia.com/en-us/data-center/products/ai-enterprise/)
+NVIDIA offers support for Kubernetes through [NVIDIA AI Enterprise](https://www.nvidia.com/en-us/data-center/products/ai-enterprise/). Refer to the [product support matrix](https://docs.nvidia.com/ai-enterprise/latest/product-support-matrix/index.html#nvaie-supported-cloud-services) for supported managed Kubernetes platforms.
 
 The Kubernetes clusters provisioned by the modules in this repository provide tested and certified versions of Kubernetes, the NVIDIA GPU operator, and the NVIDIA Driver.
 
