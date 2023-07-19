@@ -128,6 +128,7 @@ No modules.
 | <a name="input_gpu_instance_type"></a> [gpu\_instance\_type](#input\_gpu\_instance\_type) | Machine Type for GPU node pool | `string` | `"n1-standard-4"` | no |
 | <a name="input_gpu_max_node_count"></a> [gpu\_max\_node\_count](#input\_gpu\_max\_node\_count) | Max Number of GPU nodes in GPU nodepool | `string` | `"5"` | no |
 | <a name="input_gpu_min_node_count"></a> [gpu\_min\_node\_count](#input\_gpu\_min\_node\_count) | Min number of GPU nodes in GPU nodepool | `string` | `"2"` | no |
+| <a name="input_gpu_operator_driver_version"></a> [gpu\_operator\_driver\_version](#input\_gpu\_operator\_driver\_version) | The NVIDIA Driver version of GPU Operator | `string` | `"535.54.03"` | no |
 | <a name="input_gpu_operator_namespace"></a> [gpu\_operator\_namespace](#input\_gpu\_operator\_namespace) | The namespace to deploy the NVIDIA GPU operator intov | `string` | `"gpu-operator"` | no |
 | <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | Version of the GPU operator to be installed | `string` | `"v23.3.2"` | no |
 | <a name="input_gpu_type"></a> [gpu\_type](#input\_gpu\_type) | GPU SKU To attach to Holoscan GPU Node (eg. nvidia-tesla-k80) | `string` | `"nvidia-tesla-v100"` | no |

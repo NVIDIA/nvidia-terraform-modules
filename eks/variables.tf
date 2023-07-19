@@ -40,6 +40,12 @@ variable "gpu_operator_version" {
   description = "The version of the GPU operator"
 }
 
+variable "gpu_operator_driver_version" {
+  type        = string
+  default     = "535.54.03"
+  description = "The NVIDIA Driver version of GPU Operator"
+}
+
 variable "gpu_operator_namespace" {
   type        = string
   default     = "gpu-operator"
