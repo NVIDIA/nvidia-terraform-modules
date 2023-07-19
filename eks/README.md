@@ -74,7 +74,6 @@ To create a cluster with everything needed to run the Cloud Native Service Add-o
 7. Connect to the cluster with `kubectl` by running `aws eks update-kubeconfig --name tf-holoscan-cluster --region us-west-2` after the cluster is created
 8. Run `terraform destroy` to delete cloud infrastructure provisioned by Terraform
 
-
 ## Requirements
 
 | Name | Version |
@@ -139,6 +138,7 @@ To create a cluster with everything needed to run the Cloud Native Service Add-o
 | <a name="input_gpu_node_pool_delete_on_termination"></a> [gpu\_node\_pool\_delete\_on\_termination](#input\_gpu\_node\_pool\_delete\_on\_termination) | Delete the VM nodes root filesystem on each node of the instance type. This is set to true by default, but can be changed when desired when using the 'local-storage provisioner' and are keeping important application data on the nodes | `bool` | `true` | no |
 | <a name="input_gpu_node_pool_root_disk_size_gb"></a> [gpu\_node\_pool\_root\_disk\_size\_gb](#input\_gpu\_node\_pool\_root\_disk\_size\_gb) | The size of the root disk on all GPU nodes in the EKS-managed GPU-only Node Pool. This is primarily for container image storage on the node | `number` | `512` | no |
 | <a name="input_gpu_node_pool_root_volume_type"></a> [gpu\_node\_pool\_root\_volume\_type](#input\_gpu\_node\_pool\_root\_volume\_type) | The type of disk to use for the GPU node pool root disk (eg. gp2, gp3). Note, this is different from the type of disk used by applications via EKS Storage classes/PVs & PVCs | `string` | `"gp2"` | no |
+| <a name="input_gpu_operator_driver_version"></a> [gpu\_operator\_driver\_version](#input\_gpu\_operator\_driver\_version) | The NVIDIA Driver version of GPU Operator | `string` | `"535.54.03"` | no |
 | <a name="input_gpu_operator_namespace"></a> [gpu\_operator\_namespace](#input\_gpu\_operator\_namespace) | The namespace for the GPU operator deployment | `string` | `"gpu-operator"` | no |
 | <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | The version of the GPU operator | `string` | `"v23.3.2"` | no |
 | <a name="input_max_cpu_nodes"></a> [max\_cpu\_nodes](#input\_max\_cpu\_nodes) | Maximum number of CPU nodes in the Autoscaling Group | `string` | `"2"` | no |
@@ -167,3 +167,4 @@ To create a cluster with everything needed to run the Cloud Native Service Add-o
 | <a name="output_oidc_endpoint"></a> [oidc\_endpoint](#output\_oidc\_endpoint) | n/a |
 | <a name="output_private_subnet_ids"></a> [private\_subnet\_ids](#output\_private\_subnet\_ids) | n/a |
 | <a name="output_public_subnet_ids"></a> [public\_subnet\_ids](#output\_public\_subnet\_ids) | n/a |
+
