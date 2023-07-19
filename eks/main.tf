@@ -194,5 +194,11 @@ resource "helm_release" "gpu_operator" {
   cleanup_on_fail  = true
   reset_values     = true
   replace          = true
+
+  set {
+	name   = "driver.version"
+        value  = var.gpu_operator_driver_version
+  }
+
 }
 

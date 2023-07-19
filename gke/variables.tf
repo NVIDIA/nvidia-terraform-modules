@@ -104,6 +104,12 @@ variable "gpu_operator_version" {
   description = "Version of the GPU operator to be installed"
 }
 
+variable "gpu_operator_driver_version" {
+  type        = string
+  default     = "535.54.03"
+  description = "The NVIDIA Driver version of GPU Operator"
+}
+
 variable "gpu_operator_namespace" {
   default     = "gpu-operator"
   description = "The namespace to deploy the NVIDIA GPU operator intov"
