@@ -1,9 +1,15 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) 2022-2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
 /****************************
-Azure Variables
+Azure Resource Group Variables
 ****************************/
+
+variable "existing_resource_group_name" {
+  description = "The name of an existing resource group the Kubernetes cluster should be deployed into. Defaults to the name of the cluster + `-rg` if none is specified"
+  default = null
+  type = string
+}
 
 variable "location" {
   description = "The region to create resources in"

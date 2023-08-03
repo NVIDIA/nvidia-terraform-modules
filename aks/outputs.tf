@@ -1,8 +1,8 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) 2022-2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
 output "resource_group_name" {
-  value = azurerm_resource_group.holoscan.name
+  value = var.existing_resource_group_name == null ? azurerm_resource_group.holoscan[0].name : data.azurerm_resource_group.existing[0].name
 }
 
 output "kubernetes_cluster_name" {

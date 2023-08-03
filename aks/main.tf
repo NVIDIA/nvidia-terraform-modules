@@ -1,7 +1,13 @@
 # SPDX-FileCopyrightText: Copyright (c) 2022-2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
+data "azurerm_resource_group" "existing" {
+  count = var.existing_resource_group_name == null ? 0 : 1
+  name = var.existing_resource_group_name
+}
+
 resource "azurerm_resource_group" "holoscan" {
+  count = var.existing_resource_group_name == null ? 1 : 0
   name     = "${var.cluster_name}-rg"
   location = var.location
   tags = {
@@ -13,8 +19,8 @@ resource "azurerm_resource_group" "holoscan" {
 resource "azurerm_kubernetes_cluster" "holoscan" {
   name                = var.cluster_name
   kubernetes_version  = var.kubernetes_version
-  resource_group_name = azurerm_resource_group.holoscan.name
-  location            = azurerm_resource_group.holoscan.location
+  resource_group_name = var.existing_resource_group_name == null ? azurerm_resource_group.holoscan[0].name : data.azurerm_resource_group.existing[0].name
+  location            = var.existing_resource_group_name == null ? azurerm_resource_group.holoscan[0].location : data.azurerm_resource_group.existing[0].location
   dns_prefix          = var.cluster_name
 
   default_node_pool {
@@ -44,7 +50,7 @@ resource "azurerm_kubernetes_cluster" "holoscan" {
 
   // As the cluster is being created, have the az CLI update the users kubeconfig file
   provisioner "local-exec" {
-    command = "az aks get-credentials --resource-group ${var.cluster_name}-rg --name ${var.cluster_name} --overwrite-existing"
+    command = "az aks get-credentials --resource-group ${var.existing_resource_group_name == null ? azurerm_resource_group.holoscan[0].name : data.azurerm_resource_group.existing[0].name} --name ${var.cluster_name} --overwrite-existing"
   }
 
   provisioner "local-exec" {
@@ -54,7 +60,7 @@ resource "azurerm_kubernetes_cluster" "holoscan" {
 
 data "azurerm_kubernetes_cluster" "holoscancluster" {
   name                = azurerm_kubernetes_cluster.holoscan.name
-  resource_group_name = azurerm_resource_group.holoscan.name
+  resource_group_name = var.existing_resource_group_name == null ? azurerm_resource_group.holoscan[0].name : data.azurerm_resource_group.existing[0].name
   depends_on          = [azurerm_kubernetes_cluster.holoscan]
 }
 
