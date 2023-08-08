@@ -24,16 +24,6 @@ data "aws_instances" "nodes" {
   instance_state_names = ["running"]
 }
 
-data "external" "setup_kube_config" {
-  program = ["bash", "${path.module}/setup-kube-config.sh"]
-  query = {
-    aws_profile      = var.aws_profile
-    aws_region       = data.aws_region.current.name
-    eks_cluster_name = module.eks.cluster_id
-    eks_cluster_arn  = module.eks.cluster_arn
-  }
-}
-
 data "aws_eks_cluster" "holoscan" {
   name = module.eks.cluster_id
 }

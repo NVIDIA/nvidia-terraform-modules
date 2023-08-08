@@ -55,7 +55,3 @@ output "kube_exec_args" {
     module.eks.cluster_id
   ]
 }
-
-output "kube_config_setup" {
-  value = data.external.setup_kube_config.result
-}
