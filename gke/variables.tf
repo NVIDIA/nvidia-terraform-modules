@@ -44,7 +44,7 @@ variable "node_zones" {
 }
 
 variable "release_channel" {
-  default     = "RAPID"
+  default     = "REGULAR"
   description = "Configuration options for the Release channel feature, which provide more control over automatic upgrades of your GKE clusters. When updating this field, GKE imposes specific version requirements"
 }
 
@@ -128,8 +128,14 @@ variable "disk_size_gb" {
 GPU Operator Variables
 ***************************/
 variable "gpu_operator_version" {
-  default     = "v23.3.1"
+  default     = "v23.3.2"
   description = "Version of the GPU operator to be installed"
+}
+
+variable "gpu_operator_driver_version" {
+  type        = string
+  default     = "535.54.03"
+  description = "The NVIDIA Driver version of GPU Operator"
 }
 
 variable "gpu_operator_namespace" {
