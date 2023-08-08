@@ -124,7 +124,9 @@ No modules.
 | <a name="input_cpu_instance_type"></a> [cpu\_instance\_type](#input\_cpu\_instance\_type) | Machine Type for CPU node pool | `string` | `"n1-standard-4"` | no |
 | <a name="input_cpu_max_node_count"></a> [cpu\_max\_node\_count](#input\_cpu\_max\_node\_count) | Max Number of CPU nodes in CPU nodepool | `string` | `"5"` | no |
 | <a name="input_cpu_min_node_count"></a> [cpu\_min\_node\_count](#input\_cpu\_min\_node\_count) | Number of CPU nodes in CPU nodepool | `string` | `"1"` | no |
+| <a name="input_disk_size_gb"></a> [disk\_size\_gb](#input\_disk\_size\_gb) | n/a | `string` | `"512"` | no |
 | <a name="input_gpu_count"></a> [gpu\_count](#input\_gpu\_count) | Number of GPUs to attach to each node in GPU pool | `string` | `"1"` | no |
+| <a name="input_gpu_instance_tags"></a> [gpu\_instance\_tags](#input\_gpu\_instance\_tags) | GPU instance nodes tags | `list(string)` | `[]` | no |
 | <a name="input_gpu_instance_type"></a> [gpu\_instance\_type](#input\_gpu\_instance\_type) | Machine Type for GPU node pool | `string` | `"n1-standard-4"` | no |
 | <a name="input_gpu_max_node_count"></a> [gpu\_max\_node\_count](#input\_gpu\_max\_node\_count) | Max Number of GPU nodes in GPU nodepool | `string` | `"5"` | no |
 | <a name="input_gpu_min_node_count"></a> [gpu\_min\_node\_count](#input\_gpu\_min\_node\_count) | Min number of GPU nodes in GPU nodepool | `string` | `"2"` | no |
@@ -132,14 +134,17 @@ No modules.
 | <a name="input_gpu_operator_namespace"></a> [gpu\_operator\_namespace](#input\_gpu\_operator\_namespace) | The namespace to deploy the NVIDIA GPU operator intov | `string` | `"gpu-operator"` | no |
 | <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | Version of the GPU operator to be installed | `string` | `"v23.3.2"` | no |
 | <a name="input_gpu_type"></a> [gpu\_type](#input\_gpu\_type) | GPU SKU To attach to Holoscan GPU Node (eg. nvidia-tesla-k80) | `string` | `"nvidia-tesla-v100"` | no |
+| <a name="input_network"></a> [network](#input\_network) | Network CIDR for VPC | `string` | `""` | no |
 | <a name="input_node_zones"></a> [node\_zones](#input\_node\_zones) | Specify zones to put nodes in (must be in same region defined above) | `list(any)` | n/a | yes |
 | <a name="input_num_cpu_nodes"></a> [num\_cpu\_nodes](#input\_num\_cpu\_nodes) | Number of CPU nodes when pool is created | `number` | `1` | no |
 | <a name="input_num_gpu_nodes"></a> [num\_gpu\_nodes](#input\_num\_gpu\_nodes) | Number of GPU nodes when pool is created | `number` | `2` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | GCP Project ID for the VPC and K8s Cluster. This module currently does not support projects with a SharedVPC | `any` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | The Region resources (VPC, GKE, Compute Nodes) will be created in | `any` | n/a | yes |
 | <a name="input_release_channel"></a> [release\_channel](#input\_release\_channel) | Configuration options for the Release channel feature, which provide more control over automatic upgrades of your GKE clusters. When updating this field, GKE imposes specific version requirements | `string` | `"REGULAR"` | no |
+| <a name="input_subnetwork"></a> [subnetwork](#input\_subnetwork) | Subnet name used for k8s cluster nodes | `string` | `""` | no |
 | <a name="input_use_cpu_spot_instances"></a> [use\_cpu\_spot\_instances](#input\_use\_cpu\_spot\_instances) | Use Spot instance for CPU pool | `bool` | `false` | no |
 | <a name="input_use_gpu_spot_instances"></a> [use\_gpu\_spot\_instances](#input\_use\_gpu\_spot\_instances) | Use Spot instance for GPU pool | `bool` | `false` | no |
+| <a name="input_vpc_enabled"></a> [vpc\_enabled](#input\_vpc\_enabled) | Variable to control nvidia-kubernetes GKE module VPC creation | `bool` | `true` | no |
 
 ## Outputs
 
