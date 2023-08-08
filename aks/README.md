@@ -106,6 +106,7 @@ No modules.
 | [azurerm_kubernetes_cluster_node_pool.holoscan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/kubernetes_cluster_node_pool) | resource |
 | [azurerm_resource_group.holoscan](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
 | [azurerm_kubernetes_cluster.holoscancluster](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/kubernetes_cluster) | data source |
+| [azurerm_resource_group.existing](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resource_group) | data source |
 
 ## Inputs
 
@@ -119,6 +120,7 @@ No modules.
 | <a name="input_cpu_node_pool_max_count"></a> [cpu\_node\_pool\_max\_count](#input\_cpu\_node\_pool\_max\_count) | Max count of nodes in Default CPU pool | `number` | `5` | no |
 | <a name="input_cpu_node_pool_min_count"></a> [cpu\_node\_pool\_min\_count](#input\_cpu\_node\_pool\_min\_count) | Min ount of number of nodes in Default CPU pool | `number` | `1` | no |
 | <a name="input_cpu_os_sku"></a> [cpu\_os\_sku](#input\_cpu\_os\_sku) | Specifies the OS SKU used by the agent pool. Possible values include: Ubuntu, CBLMariner, Mariner, Windows2019, Windows2022 | `string` | `"Ubuntu"` | no |
+| <a name="input_existing_resource_group_name"></a> [existing\_resource\_group\_name](#input\_existing\_resource\_group\_name) | The name of an existing resource group the Kubernetes cluster should be deployed into. Defaults to the name of the cluster + `-rg` if none is specified | `string` | `null` | no |
 | <a name="input_gpu_machine_type"></a> [gpu\_machine\_type](#input\_gpu\_machine\_type) | Machine instance type of the AKS GPU node pool | `string` | `"Standard_NC6s_v3"` | no |
 | <a name="input_gpu_node_pool_count"></a> [gpu\_node\_pool\_count](#input\_gpu\_node\_pool\_count) | Count of nodes in Default GPU pool | `number` | `2` | no |
 | <a name="input_gpu_node_pool_disk_size"></a> [gpu\_node\_pool\_disk\_size](#input\_gpu\_node\_pool\_disk\_size) | Disk size in GB of nodes in the Default GPU pool | `number` | `100` | no |
@@ -126,7 +128,7 @@ No modules.
 | <a name="input_gpu_node_pool_min_count"></a> [gpu\_node\_pool\_min\_count](#input\_gpu\_node\_pool\_min\_count) | Min count of number of nodes in Default GPU pool | `number` | `2` | no |
 | <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | Version of the GPU operator to be installed | `string` | `"v23.3.2"` | no |
 | <a name="input_gpu_os_sku"></a> [gpu\_os\_sku](#input\_gpu\_os\_sku) | Specifies the OS SKU used by the agent pool. Possible values include: Ubuntu, CBLMariner, Mariner, Windows2019, Windows2022 | `string` | `"Ubuntu"` | no |
-| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Version of Kubernetes to turn on. Run 'az aks get-versions --location <location> --output table' to view all available versions  | `string` | `"1.26.3"` | no |
+| <a name="input_kubernetes_version"></a> [kubernetes\_version](#input\_kubernetes\_version) | Version of Kubernetes to turn on. Run 'az aks get-versions --location <location> --output table' to view all available versions | `string` | `"1.26.3"` | no |
 | <a name="input_location"></a> [location](#input\_location) | The region to create resources in | `any` | n/a | yes |
 
 ## Outputs
