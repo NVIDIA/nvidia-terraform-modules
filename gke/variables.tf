@@ -12,6 +12,24 @@ variable "region" {
   description = "The Region resources (VPC, GKE, Compute Nodes) will be created in"
 }
 
+variable "vpc_enabled" {
+  default     = true
+  type        = bool
+  description = "Variable to control nvidia-kubernetes GKE module VPC creation"
+}
+
+variable "network" {
+  default     = ""
+  type        = string
+  description = "Network CIDR for VPC"
+}
+
+variable "subnetwork" {
+  type        = string
+  default     = ""
+  description = "Subnet name used for k8s cluster nodes"
+}
+
 /***************************
 GKE Variables
 ***************************/
@@ -94,6 +112,16 @@ variable "gpu_count" {
 variable "gpu_instance_type" {
   default     = "n1-standard-4"
   description = "Machine Type for GPU node pool"
+}
+
+variable "gpu_instance_tags" {
+  type        = list(string)
+  default     = []
+  description = "GPU instance nodes tags"
+}
+variable "disk_size_gb" {
+  default = "512"
+  type    = string
 }
 
 /***************************

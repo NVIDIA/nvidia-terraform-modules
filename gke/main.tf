@@ -5,8 +5,10 @@
 VPC Network Configuration
 ***************************/
 resource "google_compute_network" "holoscan-vpc" {
+  count                   = var.vpc_enabled ? 1 : 0
   name                    = "${var.cluster_name}-vpc"
   auto_create_subnetworks = "false"
+  project                 = var.project_id
 }
 
 /***************************
@@ -14,9 +16,11 @@ Subnet Configuration
 ***************************/
 resource "google_compute_subnetwork" "holoscan-subnet" {
   name          = "${var.cluster_name}-subnet"
+  count         = var.vpc_enabled ? 1 : 0
   region        = var.region
-  network       = google_compute_network.holoscan-vpc.name
+  network       = google_compute_network.holoscan-vpc[0].name
   ip_cidr_range = "10.150.0.0/24"
+  project       = var.project_id
 }
 
 /***************************
@@ -27,11 +31,13 @@ GKE Configuration
 data "google_container_engine_versions" "latest" {
   provider = google-beta
   location = var.region
+  project  = var.project_id
 }
 
 resource "google_container_cluster" "holoscan" {
   name     = var.cluster_name
-  location = var.region
+  project  = var.project_id
+  location = length(var.node_zones) == 1 ? one(var.node_zones) : var.region
   release_channel {
     channel = var.release_channel
   }
@@ -40,8 +46,8 @@ resource "google_container_cluster" "holoscan" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  network    = google_compute_network.holoscan-vpc.name
-  subnetwork = google_compute_subnetwork.holoscan-subnet.name
+  network    = var.vpc_enabled ? google_compute_network.holoscan-vpc[0].name : var.network
+  subnetwork = var.vpc_enabled ? google_compute_subnetwork.holoscan-subnet[0].name : var.subnetwork
 
   // Workload Identity Configuration
   workload_identity_config {
@@ -52,15 +58,16 @@ resource "google_container_cluster" "holoscan" {
 GKE CPU Node Pool Config
 ***************************/
 resource "google_container_node_pool" "cpu_nodes" {
-  name       = "tf-${var.cluster_name}-cpu-pool"
-  location   = var.region
-  cluster    = google_container_cluster.holoscan.name
-  node_count = var.num_cpu_nodes
+  name           = "tf-${var.cluster_name}-cpu-pool"
+  project        = var.project_id
+  location       = length(var.node_zones) == 1 ? one(var.node_zones) : var.region
+  node_locations = length(var.node_zones) > 1 ? var.node_zones : null
+  cluster        = google_container_cluster.holoscan.name
+  node_count     = var.num_cpu_nodes
   autoscaling {
     min_node_count = var.cpu_min_node_count
     max_node_count = var.cpu_max_node_count
   }
-  node_locations = var.node_zones
   node_config {
     image_type = "UBUNTU_CONTAINERD"
     oauth_scopes = [
@@ -72,7 +79,8 @@ resource "google_container_node_pool" "cpu_nodes" {
 
     preemptible  = var.use_cpu_spot_instances
     machine_type = var.cpu_instance_type
-    tags         = ["tf-managed", "${var.cluster_name}"]
+    disk_size_gb = var.disk_size_gb
+    tags         = concat(["tf-managed", "${var.cluster_name}"], var.gpu_instance_tags)
     metadata = {
       disable-legacy-endpoints = "true"
     }
@@ -97,9 +105,10 @@ GKE GPU Node Pool Config
 ***************************/
 resource "google_container_node_pool" "gpu_nodes" {
   name           = "tf-${var.cluster_name}-gpu-pool"
-  location       = var.region
+  project        = var.project_id
+  location       = length(var.node_zones) == 1 ? one(var.node_zones) : var.region
+  node_locations = length(var.node_zones) > 1 ? var.node_zones : null
   cluster        = google_container_cluster.holoscan.name
-  node_locations = var.node_zones
   node_count     = var.num_gpu_nodes
   autoscaling {
     min_node_count = var.gpu_min_node_count
@@ -120,7 +129,8 @@ resource "google_container_node_pool" "gpu_nodes" {
 
     preemptible  = var.use_gpu_spot_instances
     machine_type = var.gpu_instance_type
-    tags         = ["tf-managed", "${var.cluster_name}"]
+    disk_size_gb = var.disk_size_gb
+    tags         = concat(["tf-managed", "${var.cluster_name}"], var.gpu_instance_tags)
     metadata = {
       disable-legacy-endpoints = "true"
     }
