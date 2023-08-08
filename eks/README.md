@@ -87,7 +87,6 @@ To create a cluster with everything needed to run the Cloud Native Service Add-o
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | 4.45.0 |
-| <a name="provider_external"></a> [external](#provider\_external) | 2.3.1 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | 2.9.0 |
 
 ## Modules
@@ -108,7 +107,6 @@ To create a cluster with everything needed to run the Cloud Native Service Add-o
 | [aws_eks_cluster.holoscan](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/eks_cluster) | data source |
 | [aws_instances.nodes](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/instances) | data source |
 | [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
-| [external_external.setup_kube_config](https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external) | data source |
 
 ## Inputs
 
@@ -159,7 +157,6 @@ To create a cluster with everything needed to run the Cloud Native Service Add-o
 | <a name="output_cluster_endpoint"></a> [cluster\_endpoint](#output\_cluster\_endpoint) | n/a |
 | <a name="output_cpu_node_role_name"></a> [cpu\_node\_role\_name](#output\_cpu\_node\_role\_name) | IAM Node Role Bane for CPU node pools |
 | <a name="output_gpu_node_role_name"></a> [gpu\_node\_role\_name](#output\_gpu\_node\_role\_name) | IAM Node Role Name for GPU node pools |
-| <a name="output_kube_config_setup"></a> [kube\_config\_setup](#output\_kube\_config\_setup) | n/a |
 | <a name="output_kube_exec_api_version"></a> [kube\_exec\_api\_version](#output\_kube\_exec\_api\_version) | n/a |
 | <a name="output_kube_exec_args"></a> [kube\_exec\_args](#output\_kube\_exec\_args) | n/a |
 | <a name="output_kube_exec_command"></a> [kube\_exec\_command](#output\_kube\_exec\_command) | n/a |
@@ -167,4 +164,3 @@ To create a cluster with everything needed to run the Cloud Native Service Add-o
 | <a name="output_oidc_endpoint"></a> [oidc\_endpoint](#output\_oidc\_endpoint) | n/a |
 | <a name="output_private_subnet_ids"></a> [private\_subnet\_ids](#output\_private\_subnet\_ids) | n/a |
 | <a name="output_public_subnet_ids"></a> [public\_subnet\_ids](#output\_public\_subnet\_ids) | n/a |
-
