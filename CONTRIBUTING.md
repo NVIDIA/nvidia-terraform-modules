@@ -3,8 +3,8 @@
 
 #### Issue Tracking
 
-* All enhancement, bugfix, or change requests must begin with the creation of a [TensorRT Issue Request](https://github.com/nvidia/nvidia-terraform-modules/issues).
-  * The issue request must be reviewed by TensorRT engineers and approved prior to code review.
+* All enhancement, bugfix, or change requests must begin with the creation of an [Issue Request](https://github.com/nvidia/nvidia-terraform-modules/issues).
+  * The issue request must be reviewed by NVIDIA engineers and approved prior to code review.
 
 
 #### Coding Guidelines
@@ -40,7 +40,7 @@ Developer workflow for code contributions is as follows:
 2. Git clone the forked repository and push changes to the personal fork.
 
   ```bash
-git clone https://github.com/YOUR_USERNAME/YOUR_FORK.git TensorRT
+git clone https://github.com/YOUR_USERNAME/YOUR_FORK.git NVIDIAK8s
 # Checkout the targeted branch and commit changes
 # Push the commits to a branch on the fork (remote).
 git push -u origin <local-branch>:<remote-branch>
