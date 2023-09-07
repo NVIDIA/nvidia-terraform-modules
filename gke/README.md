@@ -56,9 +56,7 @@ gcloud container clusters get-credentials <CLUSTER_NAME> --region=<REGION>
 ```
 
 #### Cleaning up / Deleting resources
-1. Run `terraform destroy` to delete all remaining GCP resources created by this module. You should see `Destroy complete!` message after a few minutes.
-
-** If gpu-operator namespace deletion takes too long run `terraform state rm kubernetes_namespace_v1.gpu-operator`, then rerun `terraform destroy`** 
+1. Run `terraform state rm kubernetes_namespace_v1.gpu-operator` and then run `terraform destroy` to delete all remaining GCP resources created by this module. You should see `Destroy complete!` message after a few minutes.
 
 
 # Terraform Module Information

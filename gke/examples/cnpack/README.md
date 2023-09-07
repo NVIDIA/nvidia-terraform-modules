@@ -24,13 +24,13 @@ This module will add additional GKE specific configuration for use with the [Clo
 
 4. If everything looks correct, run `terraform apply tfplan`
 
-4. To delete the cluster, run `module.holoscan-ready-gke.kubernetes_resource_quota_v1.gpu-operator-quota` then run `terraform destroy`
+5. To delete the cluster, run `terraform state rm module.holoscan-ready-gke.kubernetes_namespace_v1.gpu-operator`, then run `terraform destroy`
 
 
 ### Running CNPack with the CNPack Holoscan Cluster
 1. Once the cluster is created update your kubeconfig:
 ```bash
-gcloud beta container clusters get-credentials <cluster-name> --region <region> --project <project-id>
+gcloud container clusters get-credentials <cluster-name> --region <region> --project <project-id>
 ```
 2. Run `terraform output` to get the needed values to populate the CNPack config file
 
