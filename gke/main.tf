@@ -197,7 +197,7 @@ resource "helm_release" "gpu-operator" {
   name             = "gpu-operator"
   repository       = "https://helm.ngc.nvidia.com/nvidia"
   chart            = "gpu-operator"
-  version          = var.gpu_operator_version
+  version          = var.nvaie == false ? var.gpu_operator_version : var.nvaie_gpu_operator_version
   namespace        = var.gpu_operator_namespace
   create_namespace = false
   atomic           = true
@@ -206,8 +206,8 @@ resource "helm_release" "gpu-operator" {
   replace          = true
 
   set {
-	name   = "driver.version"
-        value  = var.gpu_operator_driver_version
+    name  = "driver.version"
+    value = var.nvaie == false ? var.gpu_operator_driver_version : var.nvaie_gpu_operator_driver_version
   }
 
 }
