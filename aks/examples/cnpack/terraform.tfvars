@@ -5,12 +5,12 @@
 # Do not commit this file to Git with sensitive values
 
 # admin_group_object_ids                = ""
-# az_monitor-user-managed-id            = "tf-holoscan-identity"
+# az_monitor_user_managed_id            = "tf-holoscan-identity"
 # azure_log_analytics_retention_in_days = 30
 # azure_log_analytics_sku               = "PerGB2018"
 # cluster_name                          = ""
-# fluentbit-workspace-name              = ""
+# fluentbit_workspace_name              = ""
 # fluentbit_enabled                     = true
 # location                              = ""
-# prometheus-name                       = ""
+# prometheus_name                       = ""
 # prometheus_resource_group_name        = "prometheus-rg"

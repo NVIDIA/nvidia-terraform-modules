@@ -6,7 +6,7 @@ Fluentbit Config
 
 // Create an Azure Log Analytics Workspace to send Fluentbit Logs to
 resource "azurerm_log_analytics_workspace" "cnpack-fluentbit-workspace" {
-  name                = var.fluentbit-workspace-name
+  name                = var.fluentbit_workspace_name
   location            = module.holoscan-ready-aks.location
   resource_group_name = module.holoscan-ready-aks.resource_group_name
   sku                 = var.azure_log_analytics_sku
@@ -15,7 +15,7 @@ resource "azurerm_log_analytics_workspace" "cnpack-fluentbit-workspace" {
 
 data "azurerm_log_analytics_workspace" "fluent" {
   depends_on          = [azurerm_log_analytics_workspace.cnpack-fluentbit-workspace]
-  name                = var.fluentbit-workspace-name
+  name                = var.fluentbit_workspace_name
   resource_group_name = module.holoscan-ready-aks.resource_group_name
 }
 
