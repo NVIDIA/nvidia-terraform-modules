@@ -3,11 +3,11 @@
 
 data "azurerm_resource_group" "existing" {
   count = var.existing_resource_group_name == null ? 0 : 1
-  name = var.existing_resource_group_name
+  name  = var.existing_resource_group_name
 }
 
 resource "azurerm_resource_group" "holoscan" {
-  count = var.existing_resource_group_name == null ? 1 : 0
+  count    = var.existing_resource_group_name == null ? 1 : 0
   name     = "${var.cluster_name}-rg"
   location = var.location
   tags = {
@@ -87,6 +87,6 @@ resource "azurerm_kubernetes_cluster_node_pool" "holoscan" {
   // and allows for configuration of the cluster in a single provisioning step.
   // Run "helm upgrade --install" for idempotency
   provisioner "local-exec" {
-    command = "helm upgrade --install  gpu-operator --version ${var.gpu_operator_version} --create-namespace --namespace gpu-operator nvidia/gpu-operator --set toolkit.enabled=true --set operator.cleanupCRD=true --set driver.enabled=false"
+    command = "helm upgrade --install  gpu-operator --version ${var.nvaie ? var.nvaie_gpu_operator_version : var.gpu_operator_version} --create-namespace --namespace gpu-operator nvidia/gpu-operator --set toolkit.enabled=true --set operator.cleanupCRD=true --set driver.enabled=false"
   }
 }
