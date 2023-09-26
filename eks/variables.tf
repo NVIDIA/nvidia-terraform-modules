@@ -35,15 +35,14 @@ variable "cluster_version" {
   GPU Operator Variables
 *************************/
 variable "gpu_operator_version" {
-  type        = string
-  default     = "v23.3.2"
-  description = "The version of the GPU operator"
+  default     = "v23.6.1"
+  description = "Version of the GPU Operator to deploy. Defaults to latest available. Not set when `nvaie` is set to `true`"
 }
 
 variable "gpu_operator_driver_version" {
   type        = string
-  default     = "535.54.03"
-  description = "The NVIDIA Driver version of GPU Operator"
+  default     = "535.104.05"
+  description = "The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available. Not set when `nvaie` is set to true"
 }
 
 variable "gpu_operator_namespace" {
@@ -52,6 +51,23 @@ variable "gpu_operator_namespace" {
   description = "The namespace for the GPU operator deployment"
 }
 
+variable "nvaie" {
+  type        = bool
+  default     = false
+  description = "To use the versions of GPU operator and drivers specified as part of NVIDIA AI Enterprise, set this to true. More information at https://www.nvidia.com/en-us/data-center/products/ai-enterprise"
+}
+
+variable "nvaie_gpu_operator_version" {
+  type        = string
+  default     = "v23.3.2"
+  description = "The NVIDIA Driver version of GPU Operator. Overrides `gpu_operator_version` when `nvaie` is set to `true`"
+}
+
+variable "nvaie_gpu_operator_driver_version" {
+  type        = string
+  default     = "525.125.06"
+  description = "The NVIDIA AI Enterprise version of the NVIDIA driver to be installed with the GPU operator. Overrides `gpu_operator_driver_version` when `nvaie` is set to `true`"
+}
 /*****************************
   Managed Node Pool Variables
 ******************************/

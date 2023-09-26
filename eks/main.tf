@@ -7,10 +7,10 @@
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "4.0.2"
-  count = var.existing_vpc_details == null ? 1 : 0
-  name  = "tf-${var.cluster_name}-vpc"
-  cidr  = var.cidr_block
-  azs   = data.aws_availability_zones.available.names
+  count   = var.existing_vpc_details == null ? 1 : 0
+  name    = "tf-${var.cluster_name}-vpc"
+  cidr    = var.cidr_block
+  azs     = data.aws_availability_zones.available.names
   # FUTURE: Make configurable, or set statically for the max number of pods a cluster can handle
   private_subnets         = var.private_subnets
   public_subnets          = var.public_subnets
@@ -187,7 +187,7 @@ resource "helm_release" "gpu_operator" {
   name             = "gpu-operator"
   repository       = "https://helm.ngc.nvidia.com/nvidia"
   chart            = "gpu-operator"
-  version          = var.gpu_operator_version
+  version          = var.nvaie == false ? var.gpu_operator_version : var.nvaie_gpu_operator_version
   namespace        = var.gpu_operator_namespace
   create_namespace = true
   atomic           = true
@@ -196,8 +196,8 @@ resource "helm_release" "gpu_operator" {
   replace          = true
 
   set {
-	name   = "driver.version"
-        value  = var.gpu_operator_driver_version
+    name  = "driver.version"
+    value = var.nvaie == false ? var.gpu_operator_driver_version : var.nvaie_gpu_operator_driver_version
   }
 
 }
