@@ -4,6 +4,7 @@
 # Sample tfvars file. Uncomment out values to use
 # Do not commit this file to Git with sensitive values
 
+
 # SPDX-FileCopyrightText: Copyright (c) 2022-2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 

@@ -32,7 +32,7 @@ data "azurerm_resource_group" "prometheus" {
 resource "azapi_resource" "prometheus-cnpack" {
   depends_on                = [module.holoscan-ready-aks]
   type                      = "microsoft.monitor/accounts@2023-04-03"
-  name                      = var.prometheus-name
+  name                      = var.prometheus_name
   schema_validation_enabled = false
   parent_id                 = data.azurerm_resource_group.prometheus.id
   location                  = data.azurerm_resource_group.prometheus.location
@@ -43,7 +43,7 @@ resource "azapi_resource" "prometheus-cnpack" {
 // Get Data on Azure Monitor Workspace for Prometheus
 data "azapi_resource" "prometheus-cnpack" {
   depends_on             = [module.holoscan-ready-aks, azapi_resource.prometheus-cnpack]
-  name                   = var.prometheus-name
+  name                   = var.prometheus_name
   type                   = "microsoft.monitor/accounts@2023-04-03"
   parent_id              = data.azurerm_resource_group.prometheus.id
   response_export_values = ["*"]

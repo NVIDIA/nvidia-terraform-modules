@@ -9,7 +9,7 @@ variable "location" {
   description = "The region to create resources in. This can be filed out in the terraform.tfvars file in this directory"
 }
 
-variable "az_monitor-user-managed-id" {
+variable "az_monitor_user_managed_id" {
   type        = string
   default     = "tf-holoscan-identity"
   description = "The user managed identity to *create* for use with the Azure monitor-- at this time this does not accept existing user or system managed identity"
@@ -43,7 +43,7 @@ variable "fluentbit_enabled" {
   description = "Set to true to enable, false to disable"
 }
 
-variable "fluentbit-workspace-name" {
+variable "fluentbit_workspace_name" {
   description = "Name of the Azure Log Workspace for Fluentbit to be created"
   type        = string
 }
@@ -65,7 +65,7 @@ variable "prometheus_resource_group_name" {
   default     = "prometheus-rg"
   description = "Name of the Prometheus resource group"
 }
-variable "prometheus-name" {
+variable "prometheus_name" {
   type        = string
   description = "The name of the Azure Monitor Workspace for Prometheus"
 }
