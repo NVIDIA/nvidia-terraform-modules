@@ -28,7 +28,7 @@ variable "cluster_name" {
 
 variable "cluster_version" {
   type        = string
-  default     = "1.26"
+  default     = "1.27"
   description = "Version of EKS to install on the control plane (Major and Minor version only, do not include the patch)"
 }
 /************************

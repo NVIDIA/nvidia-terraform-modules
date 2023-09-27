@@ -118,7 +118,7 @@ To create a cluster with everything needed to run the Cloud Native Service Add-o
 | <a name="input_aws_profile"></a> [aws\_profile](#input\_aws\_profile) | n/a | `string` | `"development"` | no |
 | <a name="input_cidr_block"></a> [cidr\_block](#input\_cidr\_block) | CIDR for VPC | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | n/a | `string` | n/a | yes |
-| <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | Version of EKS to install on the control plane (Major and Minor version only, do not include the patch) | `string` | `"1.26"` | no |
+| <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | Version of EKS to install on the control plane (Major and Minor version only, do not include the patch) | `string` | `"1.27"` | no |
 | <a name="input_cpu_instance_type"></a> [cpu\_instance\_type](#input\_cpu\_instance\_type) | CPU EC2 worker node instance type | `string` | `"t2.xlarge"` | no |
 | <a name="input_cpu_node_pool_additional_user_data"></a> [cpu\_node\_pool\_additional\_user\_data](#input\_cpu\_node\_pool\_additional\_user\_data) | User data that is appended to the user data script after of the EKS bootstrap script on EKS-managed GPU node pool. | `string` | `""` | no |
 | <a name="input_cpu_node_pool_delete_on_termination"></a> [cpu\_node\_pool\_delete\_on\_termination](#input\_cpu\_node\_pool\_delete\_on\_termination) | Delete the VM nodes root filesystem on each node of the instance type. This is set to true by default, but can be changed when desired when using the 'local-storage provisioner' and are keeping important application data on the nodes | `bool` | `true` | no |
