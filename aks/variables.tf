@@ -7,8 +7,8 @@ Azure Resource Group Variables
 
 variable "existing_resource_group_name" {
   description = "The name of an existing resource group the Kubernetes cluster should be deployed into. Defaults to the name of the cluster + `-rg` if none is specified"
-  default = null
-  type = string
+  default     = null
+  type        = string
 }
 
 variable "location" {
@@ -87,8 +87,20 @@ variable "gpu_os_sku" {
 GPU Operator Variables
 ****************************/
 variable "gpu_operator_version" {
-  default     = "v23.3.2"
+  default     = "v23.6.1"
   description = "Version of the GPU operator to be installed"
+}
+
+variable "nvaie" {
+  type        = bool
+  default     = false
+  description = "To use the versions of GPU operator and drivers specified as part of NVIDIA AI Enterprise, set this to true. More information at https://www.nvidia.com/en-us/data-center/products/ai-enterprise"
+}
+
+variable "nvaie_gpu_operator_version" {
+  type        = string
+  default     = "v23.3.2"
+  description = "The NVIDIA Driver version of GPU Operator. Overrides `gpu_operator_version` when `nvaie` is set to `true`"
 }
 
 /****************************

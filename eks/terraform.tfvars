@@ -4,10 +4,13 @@
 # Sample tfvars file. Uncomment out values to use
 # Do not commit this file to Git with sensitive values
 
-# cluster_name = "holoscan-cluster"
-# region  = "us-west-2"
 
-# Optional: If deploying into an existing VPC, use the following variable
+# SPDX-FileCopyrightText: Copyright (c) 2022-2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+# Sample tfvars file. Uncomment out values to use
+# Do not commit this file to Git with sensitive values
+
 # additional_node_security_groups_rules = {}
 # additional_security_group_ids         = []
 # additional_user_data                  = ""
@@ -32,13 +35,16 @@
 # gpu_node_pool_delete_on_termination   = true
 # gpu_node_pool_root_disk_size_gb       = 512
 # gpu_node_pool_root_volume_type        = "gp2"
-# gpu_operator_driver_version           = "535.54.03"
+# gpu_operator_driver_version           = "535.104.05"
 # gpu_operator_namespace                = "gpu-operator"
-# gpu_operator_version                  = "v23.3.2"
+# gpu_operator_version                  = "v23.6.1"
 # max_cpu_nodes                         = "2"
 # max_gpu_nodes                         = "5"
 # min_cpu_nodes                         = "0"
 # min_gpu_nodes                         = "2"
+# nvaie                                 = false
+# nvaie_gpu_operator_driver_version     = "525.125.06"
+# nvaie_gpu_operator_version            = "v23.3.2"
 # private_subnets = [
 #   "10.0.1.0/24",
 #   "10.0.2.0/24",

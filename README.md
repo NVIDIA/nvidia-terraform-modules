@@ -22,11 +22,13 @@ Each CSP has its own end of life date for the versions of Kubernetes they suppor
 - [Azure AKS release calendar](https://learn.microsoft.com/en-us/azure/aks/supported-kubernetes-versions?tabs=azure-cli#aks-kubernetes-release-calendar) 
 - [GCP GKE release calendar](https://cloud.google.com/kubernetes-engine/docs/release-schedule#schedule_for_static_no-channel_versions).
 
-| Version | Release Date  | Kubernetes Versions                         | NVIDIA GPU Operator | NVIDIA Data Center Driver | End of Life |
-| :---    |    :---       | :---                                        | :---                | :---                      | :--- |
-| 0.2.0     | August 2023     | EKS -  1.26 <br> GKE - 1.26 <br> AKS - 1.26 | 23.3.2     | 535.54.03  (EKS & GKE)              | EKS - June 2024 <br> GKE - June 2024  <br> AKS - March 2024 |
-| 0.1.0     | June 2023     | EKS -  1.26 <br> GKE - 1.26 <br> AKS - 1.26 | 23.3.2              | 525.105.17                | EKS - June 2024 <br> GKE - June 2024  <br> AKS - March 2024 |
+| Version | Release Date  | Kubernetes Versions                            | NVIDIA GPU Operator    | NVIDIA Data Center Driver* | End of Life |
+| :---    |    :---       | :---                                           | :---                   | :---                      | :--- |
+| 0.3.0     | September 2023 | EKS -  1.26 <br> GKE - 1.26 <br> AKS - 1.26 | 23.6.1 (Default); 23.3.2 (NV AI E)                 | 535.54.03  (EKS & GKE Default); 525.125.06 (NV AI E version for GKE & EKS)    | EKS - June 2024 <br> GKE - June 2024  <br> AKS - March 2024 |
+| 0.2.0     | August 2023    | EKS -  1.26 <br> GKE - 1.26 <br> AKS - 1.26 | 23.3.2 | 535.54.03  (EKS & GKE) | EKS - June 2024 <br> GKE - June 2024  <br> AKS - March 2024 |
+| 0.1.0     | June 2023      | EKS -  1.26 <br> GKE - 1.26 <br> AKS - 1.26 | 23.3.2 | 525.105.17             | EKS - June 2024 <br> GKE - June 2024  <br> AKS - March 2024 |
 
+* On AKS, the driver comes pre-installed on the host and the version is not known in advance.
 
 ## Usage
 
