@@ -130,6 +130,7 @@ No modules.
 | <a name="input_gpu_min_node_count"></a> [gpu\_min\_node\_count](#input\_gpu\_min\_node\_count) | Min number of GPU nodes in GPU nodepool | `string` | `"2"` | no |
 | <a name="input_gpu_operator_driver_version"></a> [gpu\_operator\_driver\_version](#input\_gpu\_operator\_driver\_version) | The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available. Not set when `nvaie` is set to true | `string` | `"535.104.05"` | no |
 | <a name="input_gpu_operator_namespace"></a> [gpu\_operator\_namespace](#input\_gpu\_operator\_namespace) | The namespace to deploy the NVIDIA GPU operator intov | `string` | `"gpu-operator"` | no |
+| <a name="input_gpu_operator_namespace_labels"></a> [gpu\_operator\_namespace\_labels](#input\_gpu\_operator\_namespace\_labels) | Additional labels to be added to the GPU Operator namespace | `map(string)` | `{}` | no |
 | <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | Version of the GPU Operator to deploy. Defaults to latest available. Not set when `nvaie` is set to `true` | `string` | `"v23.6.1"` | no |
 | <a name="input_gpu_type"></a> [gpu\_type](#input\_gpu\_type) | GPU SKU To attach to Holoscan GPU Node (eg. nvidia-tesla-k80) | `string` | `"nvidia-tesla-v100"` | no |
 | <a name="input_network"></a> [network](#input\_network) | Network CIDR for VPC | `string` | `""` | no |
