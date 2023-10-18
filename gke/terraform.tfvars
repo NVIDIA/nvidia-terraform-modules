@@ -16,7 +16,6 @@
 # gpu_min_node_count                = "2"
 # gpu_operator_driver_version       = "535.104.05"
 # gpu_operator_namespace            = "gpu-operator"
-# gpu_operator_namespace_labels     = {}
 # gpu_operator_version              = "v23.6.1"
 # gpu_type                          = "nvidia-tesla-v100"
 # network                           = ""

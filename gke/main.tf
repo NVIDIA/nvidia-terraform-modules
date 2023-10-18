@@ -159,12 +159,10 @@ resource "kubernetes_namespace_v1" "gpu-operator" {
       name = "gpu-operator"
     }
 
-    labels = merge({
+    labels = {
       cluster    = var.cluster_name
       managed_by = "Terraform"
-      },
-      var.gpu_operator_namespace_labels
-    )
+    }
 
     name = var.gpu_operator_namespace
   }

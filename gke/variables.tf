@@ -144,13 +144,6 @@ variable "gpu_operator_namespace" {
   description = "The namespace to deploy the NVIDIA GPU operator intov"
 }
 
-
-variable "gpu_operator_namespace_labels" {
-  description = "Additional labels to be added to the GPU Operator namespace"
-  type        = map(string)
-  default     = {}
-}
-
 variable "nvaie" {
   type        = bool
   default     = false
