@@ -25,7 +25,7 @@ variable "cluster_name" {
 }
 
 variable "kubernetes_version" {
-  default     = "1.26.3"
+  default     = "1.27"
   description = "Version of Kubernetes to turn on. Run 'az aks get-versions --location <location> --output table' to view all available versions "
 }
 
