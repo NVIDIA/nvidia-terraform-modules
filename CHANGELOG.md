@@ -1,3 +1,23 @@
+# 0.3.0
+
+### New Features
+- [EKS] Upgrade K8s to v1.27 [PR #12](https://github.com/NVIDIA/nvidia-terraform-modules/pull/12)
+- [AKS] Upgrade K8s to v1.27 [PR #12](https://github.com/NVIDIA/nvidia-terraform-modules/pull/12)
+- [All Platforms] Add support for selecting NVIDIA AI Enterprise Version of GPU Operator [PR #11](https://github.com/NVIDIA/nvidia-terraform-modules/pull/11)
+- [All Platforms] Update terraform.tfvars file to contain all possible variables [PR #10](https://github.com/NVIDIA/nvidia-terraform-modules/pull/10)
+
+### Bug Fixes
+- n/a
+
+### Breaking Changes
+n/a
+
+### Other Changes
+n/a
+
+### Known Issues
+- no new issues
+
 # 0.2.0
 
 ### New Features
