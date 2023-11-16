@@ -51,8 +51,8 @@ We strongly encourage you [configure remote state](https://developer.hashicorp.c
     - Run `terraform init` to get started
 
 4. Run the module
-    - Run `terraform plan -out plan.tf` to view the proposed changes
-    - Run `terraform apply plan.tf` to apply the configuration. 
+    - Run `terraform plan -out tfplan` to view the proposed changes
+    - Run `terraform apply tfplan` to apply the configuration. 
     - During the provisioning, the command `az aks get-credentials --resource-group holoscan-cluster-rg --name holoscan-cluster` will update your kubeconfig so you are able to run `kubectl` commands
 
 

@@ -1,3 +1,8 @@
+# Latest
+
+Beginning of 0.4.0, the CHANGELOG is auto generated. Please see [Releases](https://github.com/NVIDIA/nvidia-terraform-modules/releases) for CHANGELOG.
+
+
 # 0.3.0
 
 ### New Features

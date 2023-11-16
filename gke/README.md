@@ -29,11 +29,11 @@ This module was created with and tested on Linux using Bash, it may or may not w
 
 2. Requires the Terraform cli @ Version 1.3.4 or higher -- [Download here](https://developer.hashicorp.com/terraform/downloads)
 
-2. To run this module assumes elevated permissions in your GCP account, specifically permissions to create VPC networks, GKE clusters, and Compute nodes. This will not work on accounts using the "free plan" as you cannot use GPU nodes until a billing account is attached and activated. 
+3. To run this module assumes elevated permissions (Kubernetes Engine Admin) in your GCP account, specifically permissions to create VPC networks, GKE clusters, and Compute nodes. This will not work on accounts using the "free plan" as you cannot use GPU nodes until a billing account is attached and activated. 
 
-3. You will need to enable both the Kubernetes API and the Compute Engine APIs enabled. Click [the GKE tab in the GCP panel](https://console.cloud.google.com/kubernetes) for your project and enable the GKE API, which will also enable the Compute engine API at the same time
+4. You will need to enable both the Kubernetes API and the Compute Engine APIs enabled. Click [the GKE tab in the GCP panel](https://console.cloud.google.com/kubernetes) for your project and enable the GKE API, which will also enable the Compute engine API at the same time
 
-4. Ensure you have [GPU Quota](https://cloud.google.com/compute/quotas#gpu_quota) in your desired region/zone. You can [request](GPU Quota) if it is not enabled in a new account. You will need quota for both `GPUS_ALL_REGIONS` and for the specific SKU in the desired region.
+5. Ensure you have [GPU Quota](https://cloud.google.com/compute/quotas#gpu_quota) in your desired region/zone. You can [request](GPU Quota) if it is not enabled in a new account. You will need quota for both `GPUS_ALL_REGIONS` and for the specific SKU in the desired region.
 
 ## Usage 
 
@@ -42,11 +42,11 @@ This module was created with and tested on Linux using Bash, it may or may not w
 2. Update `terraform.tfvars` by uncommenting `project_id`, `cluster_name`, `region`, and `node_zones`, and filling out the values specific to your project. You can get the `projcet_id` from your GCP console
 3. Run `gcloud auth application-default login` to make your Google Credentials availalbe the `terraform` executable
 4. Run `terraform init` to fetch the required Terraform provider plugins
-5. If your credentials are setup correctly, you should see the proposed changes in GCP by running `terraform plan`.
+5. If your credentials are setup correctly, you should see the proposed changes in GCP by running `terraform plan -out tfplan`.
 
 ** Note on IAM Permissions:** you need either `Admin` permissions or `Compute Instance Admin (v1)`, `Kubernetes Engine Admin` and `Compute Network Admin (v1)` to run this module. 
 
-6. If this configuration looks approproate run `terraform apply`
+6. If this configuration looks approproate run `terraform apply tfplan`
 7. It will take ~5 minutes after the `terraform apply` successful completion message for the GPU operator to get to a running state
 8. Connect to the cluster with `kubectl` by running the following two commands after the cluster is created:
 ```
