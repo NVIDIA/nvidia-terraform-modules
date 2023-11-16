@@ -69,8 +69,8 @@ To create a cluster with everything needed to run the Cloud Native Service Add-o
    See Terraform [input variables](https://developer.hashicorp.com/terraform/language/values/variables#assigning-values-to-root-module-variables) for more information.
 
 4. Run `terraform init` to initialize the configured
-5. Run `terraform plan` to see what will be applied
-6. Run `terraform apply` to apply the code against your AWS environment
+5. Run `terraform plan -out tfplan` to see what will be applied
+6. Run `terraform apply tfplan` to apply the code against your AWS environment
 7. Connect to the cluster with `kubectl` by running `aws eks update-kubeconfig --name tf-holoscan-cluster --region us-west-2` after the cluster is created
 8. Run `terraform destroy` to delete cloud infrastructure provisioned by Terraform
 
