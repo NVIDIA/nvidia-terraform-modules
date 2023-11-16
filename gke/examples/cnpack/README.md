@@ -38,7 +38,7 @@ gcloud container clusters get-credentials <cluster-name> --region <region> --pro
 
 Use the following config file (adding in the outputs from "terraform output") wit CNPack to enable all AWS services tur
 ```yaml
-apiVersion: v1alpha2
+apiVersion: v1alpha3
 kind: NvidiaPlatform
 spec:
  platform:
