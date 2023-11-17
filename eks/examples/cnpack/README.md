@@ -27,19 +27,17 @@ This module will add additional AWS specific configuration for use with CNPack
 
 2. Uncomment/add values in the `terraform.tfvars` file in this directory, otherwise you will be prompted at cluster creation time for values such as `cluster_name`
 
-3. If everything looks correct, run `terraform apply`
+3. Run `terraform plan -out tfplan` to see what will be applied
 
-4. To delete the cluster, run `terraform delete`
+4. If everything looks correct, run `terraform apply tfplan`
+
+5. To delete the cluster, run `terraform destroy`
 
 
 ### Running CNPack with the CNPack Holoscan Cluster
 1. Once the cluster is created update your kubeconfig:
 ```bash
-aws eks update-kubeconfig --name  cnpackcluster  --region us-west-2 
-```
-If you changed the name of the cluster the command is:
-```bash
-aws eks update-kubeconfig --name  <cluster-name>  --region us-west-2 
+aws eks update-kubeconfig --name  tf-<cluster-name>  --region us-west-2 
 ```
 2. Run `terraform output` to get the needed values to populate the CNPack config file
 

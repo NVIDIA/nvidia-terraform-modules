@@ -24,11 +24,13 @@
     - Add `fluentbit_workspace_name`. This will create Azure Log Analytics Workspace with the specified name.
     - Add `prometheus_name`. This will create Azure Monitor Workspace with the specified name.
 
-2. Run `terraform plan` and validate that the output is correct
+2. Run `terraform plan -out tfplan` and validate that the output is correct
 
-3. Run `terraform apply`
+3. Run `terraform apply tfplan`
 
-4. The `outputs` of this module can be used immediately within the configuration file of CNPack
+4. The `terraform output` of this module can be used immediately within the configuration file of CNPack
+
+5. Run `terraform destroy` to delete all resources created by this module.
 
 **Note**
 The `log_analytics_workspace_primary_shared_key` used for Fluentbit is a sensitive variable and should be protected like a password
