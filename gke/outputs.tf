@@ -51,13 +51,3 @@ output "kubernetes_config_file" {
   description = "GKE Cluster IP Endpoint"
   sensitive   = true
 }
-
-output "rapid_channel_latest_gke_version" {
-  value       = data.google_container_engine_versions.latest.release_channel_latest_version["RAPID"]
-  description = "The latest available version of GKE when using the RAPID channel"
-}
-
-output "stable_channel_latest_gke_version" {
-  value       = data.google_container_engine_versions.latest.release_channel_latest_version["STABLE"]
-  description = "The latest available version of GKE when using the STABLE channel"
-}
