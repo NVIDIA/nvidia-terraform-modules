@@ -155,9 +155,7 @@ No modules.
 | <a name="output_kubernetes_cluster_name"></a> [kubernetes\_cluster\_name](#output\_kubernetes\_cluster\_name) | Holoscan Ready GKE Cluster Name |
 | <a name="output_kubernetes_config_file"></a> [kubernetes\_config\_file](#output\_kubernetes\_config\_file) | GKE Cluster IP Endpoint |
 | <a name="output_project_id"></a> [project\_id](#output\_project\_id) | GCloud Project ID |
-| <a name="output_rapid_channel_latest_gke_version"></a> [rapid\_channel\_latest\_gke\_version](#output\_rapid\_channel\_latest\_gke\_version) | The latest available version of GKE when using the RAPID channel |
 | <a name="output_region"></a> [region](#output\_region) | Region for Holoscan Resources to be created in when using this module |
-| <a name="output_stable_channel_latest_gke_version"></a> [stable\_channel\_latest\_gke\_version](#output\_stable\_channel\_latest\_gke\_version) | The latest available version of GKE when using the STABLE channel |
 | <a name="output_subnet_cidr_range"></a> [subnet\_cidr\_range](#output\_subnet\_cidr\_range) | The IPs and CIDRs of the subnets |
 | <a name="output_subnet_region"></a> [subnet\_region](#output\_subnet\_region) | The region of the VPC subnet used in this module |
 | <a name="output_vpc_project"></a> [vpc\_project](#output\_vpc\_project) | Project of the VPC network (can be different from the project launching Kubernetes resources) |
