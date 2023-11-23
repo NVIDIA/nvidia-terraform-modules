@@ -116,8 +116,18 @@ resource "helm_release" "gpu-operator" {
   replace          = true
 
   set {
-    name  = "driver.version"
-    value = var.nvaie ? var.nvaie_gpu_operator_driver_version : var.gpu_operator_driver_version
+    name  = "toolkit.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "operator.cleanupCRD"
+    value = "true"
+  }
+
+  set {
+    name  = "driver.enabled"
+    value = "true"
   }
 
 }
