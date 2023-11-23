@@ -80,7 +80,6 @@ resource "azurerm_kubernetes_cluster_node_pool" "holoscan" {
   }
 }
 
-
 /***************************
 Create GPU Operator Namespace
 ***************************/
