@@ -126,7 +126,7 @@ resource "helm_release" "gpu-operator" {
 
   set {
     name  = "driver.enabled"
-    value = "true"
+    value = "false"
   }
 
 }
