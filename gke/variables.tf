@@ -141,7 +141,7 @@ variable "gpu_operator_driver_version" {
 variable "gpu_operator_namespace" {
   type        = string
   default     = "gpu-operator"
-  description = "The namespace to deploy the NVIDIA GPU operator intov"
+  description = "The namespace to deploy the NVIDIA GPU operator into"
 }
 
 variable "nvaie" {
