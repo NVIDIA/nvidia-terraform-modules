@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022-2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) 2022-2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
 /***************************
@@ -41,6 +41,7 @@ resource "google_container_cluster" "holoscan" {
   release_channel {
     channel = var.release_channel
   }
+  min_master_version = var.min_master_version
   # Default Node Pool is required, to create a cluster, but we need a custom one instead
   # So we delete the default
   remove_default_node_pool = true

@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) 2022-2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 /***************************
 GCP Variables
@@ -46,6 +46,11 @@ variable "node_zones" {
 variable "release_channel" {
   default     = "REGULAR"
   description = "Configuration options for the Release channel feature, which provide more control over automatic upgrades of your GKE clusters. When updating this field, GKE imposes specific version requirements"
+}
+
+variable "min_master_version" {
+  default     = "1.28"
+  description = "The minimum cluster version of the master."
 }
 
 /***************************
@@ -128,13 +133,13 @@ variable "disk_size_gb" {
 GPU Operator Variables
 ***************************/
 variable "gpu_operator_version" {
-  default     = "v23.6.1"
+  default     = "v23.9.1"
   description = "Version of the GPU Operator to deploy. Defaults to latest available. Not set when `nvaie` is set to `true`"
 }
 
 variable "gpu_operator_driver_version" {
   type        = string
-  default     = "535.104.05"
+  default     = "535.129.03"
   description = "The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available. Not set when `nvaie` is set to true"
 }
 
@@ -152,12 +157,12 @@ variable "nvaie" {
 
 variable "nvaie_gpu_operator_version" {
   type        = string
-  default     = "v23.3.2"
+  default     = "v23.9.0"
   description = "The NVIDIA Driver version of GPU Operator. Overrides `gpu_operator_version` when `nvaie` is set to `true`"
 }
 
 variable "nvaie_gpu_operator_driver_version" {
   type        = string
-  default     = "525.125.06"
+  default     = "535.129.03"
   description = "The NVIDIA AI Enterprise version of the NVIDIA driver to be installed with the GPU operator. Overrides `gpu_operator_driver_version` when `nvaie` is set to `true`"
 }

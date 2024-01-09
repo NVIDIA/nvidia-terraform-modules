@@ -24,6 +24,7 @@ Each CSP has its own end of life date for the versions of Kubernetes they suppor
 
 | Version | Release Date  | Kubernetes Versions                            | NVIDIA GPU Operator    | NVIDIA Data Center Driver* | End of Life |
 | :---    |    :---       | :---                                           | :---                   | :---                      | :--- |
+| 0.6.0     | January 2024 | EKS -  1.28 <br> GKE - 1.28 <br> AKS - 1.28 | 23.9.1 (Default); 23.9.0 (NV AI E)                 | 535.129.03  (EKS & GKE Default); 535.129.03 (NV AI E version for GKE & EKS)    | EKS - Nov 2024 <br> GKE - Nov 2024  <br> AKS - Nov 2024 |
 | 0.5.0     | November 2023 | EKS -  1.27 <br> GKE - 1.27 <br> AKS - 1.27 | 23.6.1 (Default); 23.3.2 (NV AI E)                 | 535.104.05  (EKS & GKE Default); 525.125.06 (NV AI E version for GKE & EKS)    | EKS - July 2024 <br> GKE - August 2024  <br> AKS - July 2024 |
 | 0.4.0     | October 2023 | EKS -  1.27 <br> GKE - 1.27 <br> AKS - 1.27 | 23.6.1 (Default); 23.3.2 (NV AI E)                 | 535.104.05  (EKS & GKE Default); 525.125.06 (NV AI E version for GKE & EKS)    | EKS - July 2024 <br> GKE - August 2024  <br> AKS - July 2024 |
 | 0.3.0     | September 2023 | EKS -  1.26 <br> GKE - 1.26 <br> AKS - 1.26 | 23.6.1 (Default); 23.3.2 (NV AI E)                 | 535.54.03  (EKS & GKE Default); 525.125.06 (NV AI E version for GKE & EKS)    | EKS - June 2024 <br> GKE - June 2024  <br> AKS - March 2024 |

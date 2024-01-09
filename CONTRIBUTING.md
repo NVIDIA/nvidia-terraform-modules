@@ -9,9 +9,11 @@
 
 #### Coding Guidelines
 
-- All source code contributions must be formatted prior to checkin by running `terraform fmt`, and changes should not break validation checks provided by the `terraform validate` command.
+- All source code contributions must be formatted prior to checkin by running `terraform fmt -recursive`, and changes should not break validation checks provided by the `terraform validate` command.
 
-- When updating a variable, output, or provider, update the documentation accordingly. We use [terraform-docs](https://terraform-docs.io/) to generate the Terraform documentation in each README. Run `terraform-docs markdown .` to generate the documentation.
+- When updating a variable, output, or provider, update the documentation accordingly. We use [terraform-docs](https://terraform-docs.io/) to generate the Terraform documentation.
+    - Run `terraform-docs markdown .` to generate the documentation and replace the bottom of the README section.
+    - Run `terraform-docs tfvars hcl .` to generate the tfvar defaults, replace the existing comments of `terraform.tfvars` file.
 
 - In addition, please follow the existing conventions in the relevant file, submodule, module, and project when you add new code or when you extend/fix existing functionality.
 - Avoid introducing unnecessary complexity into existing code so that maintainability and readability are preserved.
