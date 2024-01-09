@@ -27,6 +27,12 @@ variable "pca_enabled" {
   description = "Set to true to enable, false to disable"
 }
 
+variable "pca_short_lived" {
+  type        = bool
+  default     = true
+  description = "Set to true to use AWS PCA in the short lived mode, false to use general purpose mode"
+}
+
 variable "common_name" {
   type        = string
   default     = "cluster.local"
