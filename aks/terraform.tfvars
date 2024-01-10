@@ -18,6 +18,7 @@
 # gpu_node_pool_disk_size      = 100
 # gpu_node_pool_max_count      = 5
 # gpu_node_pool_min_count      = 2
+# gpu_operator_namespace       = "gpu-operator"
 # gpu_operator_version         = "v23.6.1"
 # gpu_os_sku                   = "Ubuntu"
 # kubernetes_version           = "1.26.3"
