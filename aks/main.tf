@@ -78,15 +78,55 @@ resource "azurerm_kubernetes_cluster_node_pool" "holoscan" {
     group      = "Holoscan"
     managed_by = "Terraform"
   }
-  // Add NVIDIA NGC Helm Repo to local helm repo via local-exec command
-  provisioner "local-exec" {
-    command = "helm repo add nvidia https://helm.ngc.nvidia.com/nvidia"
+}
+
+/***************************
+Create GPU Operator Namespace
+***************************/
+resource "kubernetes_namespace_v1" "gpu-operator" {
+  metadata {
+    annotations = {
+      name = "gpu-operator"
+    }
+
+    labels = {
+      cluster    = var.cluster_name
+      managed_by = "Terraform"
+    }
+
+    name = var.gpu_operator_namespace
   }
-  // install the GPU operator on successful creation of the node pool via local-exec command.
-  // This solves any errors attempting to use the helm provider on a cluster that is not yet created
-  // and allows for configuration of the cluster in a single provisioning step.
-  // Run "helm upgrade --install" for idempotency
-  provisioner "local-exec" {
-    command = "helm upgrade --install  gpu-operator --version ${var.nvaie ? var.nvaie_gpu_operator_version : var.gpu_operator_version} --create-namespace --namespace gpu-operator nvidia/gpu-operator --set toolkit.enabled=true --set operator.cleanupCRD=true --set driver.enabled=false"
+}
+
+/***************************
+GPU Operator Configuration
+***************************/
+resource "helm_release" "gpu-operator" {
+  depends_on       = [azurerm_kubernetes_cluster_node_pool.holoscan, kubernetes_namespace_v1.gpu-operator]
+  name             = "gpu-operator"
+  repository       = "https://helm.ngc.nvidia.com/nvidia"
+  chart            = "gpu-operator"
+  version          = var.nvaie ? var.nvaie_gpu_operator_version : var.gpu_operator_version
+  namespace        = var.gpu_operator_namespace
+  create_namespace = false
+  atomic           = true
+  cleanup_on_fail  = true
+  reset_values     = true
+  replace          = true
+
+  set {
+    name  = "toolkit.enabled"
+    value = "true"
   }
+
+  set {
+    name  = "operator.cleanupCRD"
+    value = "true"
+  }
+
+  set {
+    name  = "driver.enabled"
+    value = "false"
+  }
+
 }

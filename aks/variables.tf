@@ -91,6 +91,12 @@ variable "gpu_operator_version" {
   description = "Version of the GPU operator to be installed"
 }
 
+variable "gpu_operator_namespace" {
+  type        = string
+  default     = "gpu-operator"
+  description = "The namespace to deploy the NVIDIA GPU operator into"
+}
+
 variable "nvaie" {
   type        = bool
   default     = false
