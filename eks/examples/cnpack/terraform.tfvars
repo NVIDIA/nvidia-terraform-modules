@@ -10,4 +10,5 @@
 # fluentbit_enabled      = true
 # metrics_server_enabled = true
 # pca_enabled            = true
+# pca_short_lived        = true
 # prom_adapter_enabled   = true

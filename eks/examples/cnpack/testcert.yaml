@@ -10,12 +10,12 @@ spec:
   commonName: cluster.local
   dnsNames:
     - test.cluster.local
-  duration: 2160h0m0s
+  duration: 160h0m0s
   issuerRef:
     group: awspca.cert-manager.io
     kind: AWSPCAClusterIssuer
     name: nvidia-platform
-  renewBefore: 360h0m0s
+  renewBefore: 16h0m0s
   secretName: rsa-cert-4096
   usages:
     - server auth

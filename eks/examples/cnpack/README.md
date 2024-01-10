@@ -6,7 +6,7 @@ This module will add additional AWS specific configuration for use with CNPack
 
 - AWS Managed Prometheus and corresponding IAM roles
 
-- AWS Private Certificate Authority and corresponding IAM roles
+- AWS Private Certificate Authority and corresponding IAM roles ([Short-Lived Mode](https://docs.aws.amazon.com/privateca/latest/userguide/short-lived-certificates.html))
 
 - Node Role Policy for FluentBit connection
 
@@ -224,8 +224,9 @@ No requirements.
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the cluster | `string` | n/a | yes |
 | <a name="input_common_name"></a> [common\_name](#input\_common\_name) | Common Name for PCA Creation | `string` | `"cluster.local"` | no |
 | <a name="input_fluentbit_enabled"></a> [fluentbit\_enabled](#input\_fluentbit\_enabled) | Set to true to enable, false to disable | `bool` | `true` | no |
-| <a name="input_metrics_server_enabled"></a> [metrics\_server\_enabled](#input\_metrics\_server\_enabled) | Set to true to enable the network support for Metrics Server, false to disable | `bool` | `false` | no |
+| <a name="input_metrics_server_enabled"></a> [metrics\_server\_enabled](#input\_metrics\_server\_enabled) | Set to true to enable the network support for Metrics Server, false to disable | `bool` | `true` | no |
 | <a name="input_pca_enabled"></a> [pca\_enabled](#input\_pca\_enabled) | Set to true to enable, false to disable | `bool` | `true` | no |
+| <a name="input_pca_short_lived"></a> [pca\_short\_lived](#input\_pca\_short\_lived) | Set to true to use AWS PCA in the short lived mode, false to use general purpose mode | `bool` | `true` | no |
 | <a name="input_prom_adapter_enabled"></a> [prom\_adapter\_enabled](#input\_prom\_adapter\_enabled) | Set to true to enable the network support for Prometheus Adapter, false to disable | `bool` | `true` | no |
 
 ## Outputs
