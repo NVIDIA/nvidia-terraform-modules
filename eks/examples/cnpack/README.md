@@ -157,7 +157,7 @@ You should see 2x `Running` pods named `nvidia-fluentbit-aws-for-fluentbit-<rand
 
 2. Head to the AWS Console for [CloudWatch Log Groups](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2#logsV2:log-groups)
 
-3. Search for a log group named `/aws/eks/fluentbit-cloudwatch/workload/<namespace>`. Once you click on this log group, you should see application logs for the entire cluster.
+3. Search for a log group named `/aws/eks/fluentbit-cloudwatch/logs`. Once you click on this log group, you should see application logs for the entire cluster.
 
 
 ### Troubleshooting
