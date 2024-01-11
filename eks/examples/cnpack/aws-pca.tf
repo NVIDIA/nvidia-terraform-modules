@@ -7,8 +7,8 @@ AWS Private Cert Authority Config
 
 // Create AWS Private Cert Authority
 resource "aws_acmpca_certificate_authority" "cnpack-pca" {
-  count = var.pca_enabled ? 1 : 0
-  type  = "ROOT"
+  count      = var.pca_enabled ? 1 : 0
+  type       = "ROOT"
   usage_mode = var.pca_short_lived ? "SHORT_LIVED_CERTIFICATE" : "GENERAL_PURPOSE"
   certificate_authority_configuration {
     key_algorithm     = "RSA_4096"

@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022-2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) 2022-2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
 /****************************
@@ -25,7 +25,7 @@ variable "cluster_name" {
 }
 
 variable "kubernetes_version" {
-  default     = "1.27"
+  default     = "1.28"
   description = "Version of Kubernetes to turn on. Run 'az aks get-versions --location <location> --output table' to view all available versions "
 }
 
@@ -87,7 +87,7 @@ variable "gpu_os_sku" {
 GPU Operator Variables
 ****************************/
 variable "gpu_operator_version" {
-  default     = "v23.6.1"
+  default     = "v23.9.1"
   description = "Version of the GPU operator to be installed"
 }
 
@@ -105,7 +105,7 @@ variable "nvaie" {
 
 variable "nvaie_gpu_operator_version" {
   type        = string
-  default     = "v23.3.2"
+  default     = "v23.9.0"
   description = "The NVIDIA Driver version of GPU Operator. Overrides `gpu_operator_version` when `nvaie` is set to `true`"
 }
 

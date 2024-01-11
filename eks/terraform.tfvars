@@ -1,11 +1,4 @@
-# SPDX-FileCopyrightText: Copyright (c) 2022-2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-# SPDX-License-Identifier: Apache-2.0
-
-# Sample tfvars file. Uncomment out values to use
-# Do not commit this file to Git with sensitive values
-
-
-# SPDX-FileCopyrightText: Copyright (c) 2022-2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# SPDX-FileCopyrightText: Copyright (c) 2022-2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
 # Sample tfvars file. Uncomment out values to use
@@ -17,7 +10,7 @@
 # aws_profile                           = "development"
 # cidr_block                            = "10.0.0.0/16"
 # cluster_name                          = ""
-# cluster_version                       = "1.26"
+# cluster_version                       = "1.28"
 # cpu_instance_type                     = "t2.xlarge"
 # cpu_node_pool_additional_user_data    = ""
 # cpu_node_pool_delete_on_termination   = true
@@ -35,25 +28,25 @@
 # gpu_node_pool_delete_on_termination   = true
 # gpu_node_pool_root_disk_size_gb       = 512
 # gpu_node_pool_root_volume_type        = "gp2"
-# gpu_operator_driver_version           = "535.104.05"
+# gpu_operator_driver_version           = "535.129.03"
 # gpu_operator_namespace                = "gpu-operator"
-# gpu_operator_version                  = "v23.6.1"
+# gpu_operator_version                  = "v23.9.1"
 # max_cpu_nodes                         = "2"
 # max_gpu_nodes                         = "5"
 # min_cpu_nodes                         = "0"
 # min_gpu_nodes                         = "2"
 # nvaie                                 = false
-# nvaie_gpu_operator_driver_version     = "525.125.06"
-# nvaie_gpu_operator_version            = "v23.3.2"
+# nvaie_gpu_operator_driver_version     = "535.129.03"
+# nvaie_gpu_operator_version            = "v23.9.0"
 # private_subnets = [
-#   "10.0.1.0/24",
-#   "10.0.2.0/24",
-#   "10.0.3.0/24"
+#   "10.0.0.0/19",
+#   "10.0.32.0/19",
+#   "10.0.64.0/19"
 # ]
 # public_subnets = [
-#   "10.0.4.0/24",
-#   "10.0.5.0/24",
-#   "10.0.6.0/24"
+#   "10.0.96.0/19",
+#   "10.0.128.0/19",
+#   "10.0.160.0/19"
 # ]
 # region             = "us-west-2"
 # single_nat_gateway = false
