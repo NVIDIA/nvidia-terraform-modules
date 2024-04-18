@@ -28,20 +28,20 @@ variable "cluster_name" {
 
 variable "cluster_version" {
   type        = string
-  default     = "1.28"
+  default     = "1.29"
   description = "Version of EKS to install on the control plane (Major and Minor version only, do not include the patch)"
 }
 /************************
   GPU Operator Variables
 *************************/
 variable "gpu_operator_version" {
-  default     = "v23.9.1"
+  default     = "v23.9.2"
   description = "Version of the GPU Operator to deploy. Defaults to latest available. Not set when `nvaie` is set to `true`"
 }
 
 variable "gpu_operator_driver_version" {
   type        = string
-  default     = "535.129.03"
+  default     = "550.54.15"
   description = "The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available. Not set when `nvaie` is set to true"
 }
 
@@ -59,13 +59,13 @@ variable "nvaie" {
 
 variable "nvaie_gpu_operator_version" {
   type        = string
-  default     = "v23.9.0"
+  default     = "v23.9.2"
   description = "The NVIDIA Driver version of GPU Operator. Overrides `gpu_operator_version` when `nvaie` is set to `true`"
 }
 
 variable "nvaie_gpu_operator_driver_version" {
   type        = string
-  default     = "535.129.03"
+  default     = "550.54.15"
   description = "The NVIDIA AI Enterprise version of the NVIDIA driver to be installed with the GPU operator. Overrides `gpu_operator_driver_version` when `nvaie` is set to `true`"
 }
 /*****************************
