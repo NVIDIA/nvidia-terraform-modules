@@ -4,7 +4,7 @@
 /***************************
 VPC Network Configuration
 ***************************/
-resource "google_compute_network" "holoscan-vpc" {
+resource "google_compute_network" "gke-vpc" {
   count                   = var.vpc_enabled ? 1 : 0
   name                    = "${var.cluster_name}-vpc"
   auto_create_subnetworks = "false"
@@ -14,11 +14,11 @@ resource "google_compute_network" "holoscan-vpc" {
 /***************************
 Subnet Configuration
 ***************************/
-resource "google_compute_subnetwork" "holoscan-subnet" {
+resource "google_compute_subnetwork" "gke-subnet" {
   name          = "${var.cluster_name}-subnet"
   count         = var.vpc_enabled ? 1 : 0
   region        = var.region
-  network       = google_compute_network.holoscan-vpc[0].name
+  network       = google_compute_network.gke-vpc[0].name
   ip_cidr_range = "10.150.0.0/24"
   project       = var.project_id
 }
@@ -34,7 +34,7 @@ data "google_container_engine_versions" "latest" {
   project  = var.project_id
 }
 
-resource "google_container_cluster" "holoscan" {
+resource "google_container_cluster" "gke" {
   name     = var.cluster_name
   project  = var.project_id
   location = length(var.node_zones) == 1 ? one(var.node_zones) : var.region
@@ -47,12 +47,12 @@ resource "google_container_cluster" "holoscan" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  network    = var.vpc_enabled ? google_compute_network.holoscan-vpc[0].name : var.network
-  subnetwork = var.vpc_enabled ? google_compute_subnetwork.holoscan-subnet[0].name : var.subnetwork
+  network    = var.vpc_enabled ? google_compute_network.gke-vpc[0].name : var.network
+  subnetwork = var.vpc_enabled ? google_compute_subnetwork.gke-subnet[0].name : var.subnetwork
 
   // Workload Identity Configuration
   workload_identity_config {
-    workload_pool = "${data.google_project.cluster.project_id}.svc.id.goog"
+    workload_pool = "${var.project_id}.svc.id.goog"
   }
 }
 /***************************
@@ -63,7 +63,7 @@ resource "google_container_node_pool" "cpu_nodes" {
   project        = var.project_id
   location       = length(var.node_zones) == 1 ? one(var.node_zones) : var.region
   node_locations = length(var.node_zones) > 1 ? var.node_zones : null
-  cluster        = google_container_cluster.holoscan.name
+  cluster        = google_container_cluster.gke.name
   node_count     = var.num_cpu_nodes
   autoscaling {
     min_node_count = var.cpu_min_node_count
@@ -109,7 +109,7 @@ resource "google_container_node_pool" "gpu_nodes" {
   project        = var.project_id
   location       = length(var.node_zones) == 1 ? one(var.node_zones) : var.region
   node_locations = length(var.node_zones) > 1 ? var.node_zones : null
-  cluster        = google_container_cluster.holoscan.name
+  cluster        = google_container_cluster.gke.name
   node_count     = var.num_gpu_nodes
   autoscaling {
     min_node_count = var.gpu_min_node_count
@@ -126,6 +126,9 @@ resource "google_container_node_pool" "gpu_nodes" {
     guest_accelerator {
       type  = var.gpu_type
       count = var.gpu_count
+      gpu_driver_installation_config {
+        gpu_driver_version = "INSTALLATION_DISABLED"
+      }
     }
 
     preemptible  = var.use_gpu_spot_instances
@@ -195,10 +198,11 @@ GPU Operator Configuration
 ***************************/
 resource "helm_release" "gpu-operator" {
   depends_on       = [google_container_node_pool.gpu_nodes, kubernetes_resource_quota_v1.gpu-operator-quota, kubernetes_namespace_v1.gpu-operator]
+  count            = var.install_gpu_operator ? 1 : 0
   name             = "gpu-operator"
   repository       = "https://helm.ngc.nvidia.com/nvidia"
   chart            = "gpu-operator"
-  version          = var.nvaie ? var.nvaie_gpu_operator_version : var.gpu_operator_version
+  version          = var.gpu_operator_version
   namespace        = var.gpu_operator_namespace
   create_namespace = false
   atomic           = true
@@ -208,8 +212,65 @@ resource "helm_release" "gpu-operator" {
 
   set {
     name  = "driver.version"
-    value = var.nvaie ? var.nvaie_gpu_operator_driver_version : var.gpu_operator_driver_version
+    value = var.gpu_operator_driver_version
   }
 
 }
 
+/***************************
+Create NIM Operator Namespace
+***************************/
+resource "kubernetes_namespace_v1" "nim-operator" {
+  metadata {
+    annotations = {
+      name = "nim-operator"
+    }
+
+    labels = {
+      cluster    = var.cluster_name
+      managed_by = "Terraform"
+    }
+
+    name = var.nim_operator_namespace
+  }
+}
+/***************************
+K8s Resource Quota Config
+***************************/
+resource "kubernetes_resource_quota_v1" "nim-operator-quota" {
+  depends_on = [google_container_node_pool.gpu_nodes, kubernetes_namespace_v1.nim-operator]
+  metadata {
+    name      = "gpu-operator-quota"
+    namespace = var.nim_operator_namespace
+  }
+  spec {
+    hard = {
+      pods = 100
+    }
+    scope_selector {
+      match_expression {
+        operator   = "In"
+        scope_name = "PriorityClass"
+        values     = ["system-node-critical", "system-cluster-critical"]
+      }
+    }
+  }
+}
+
+/********************************************
+ NIM Operator Configuration
+********************************************/
+resource "helm_release" "nim_operator" {
+  depends_on       = [google_container_node_pool.gpu_nodes, kubernetes_resource_quota_v1.nim-operator-quota, kubernetes_namespace_v1.nim-operator]
+  count            = var.install_nim_operator ? 1 : 0
+  name             = "nim-operator"
+  repository       = "https://helm.ngc.nvidia.com/nvidia"
+  chart            = "k8s-nim-operator"
+  version          = var.nim_operator_version
+  namespace        = var.nim_operator_namespace
+  create_namespace = true
+  atomic           = true
+  cleanup_on_fail  = true
+  reset_values     = true
+  replace          = true
+}

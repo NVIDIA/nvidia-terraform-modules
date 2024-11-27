@@ -24,6 +24,6 @@ data "aws_instances" "nodes" {
   instance_state_names = ["running"]
 }
 
-data "aws_eks_cluster" "holoscan" {
+data "aws_eks_cluster" "eks" {
   name = module.eks.cluster_id
 }

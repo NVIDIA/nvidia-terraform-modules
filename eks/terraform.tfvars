@@ -9,8 +9,8 @@
 # additional_user_data                  = ""
 # aws_profile                           = "development"
 # cidr_block                            = "10.0.0.0/16"
-# cluster_name                          = ""
-# cluster_version                       = "1.29"
+cluster_name                          = "eks-cluster"
+# cluster_version                       = "1.30"
 # cpu_instance_type                     = "t2.xlarge"
 # cpu_node_pool_additional_user_data    = ""
 # cpu_node_pool_delete_on_termination   = true
@@ -23,21 +23,23 @@
 # enable_nat_gateway                    = true
 # existing_vpc_details                  = ""
 # gpu_ami_id                            = ""
-# gpu_instance_type                     = "p3.2xlarge"
+# For Instances refer https://docs.aws.amazon.com/dlami/latest/devguide/gpu.html
+# gpu_instance_type                     = "g6e.12xlarge"
 # gpu_node_pool_additional_user_data    = ""
 # gpu_node_pool_delete_on_termination   = true
 # gpu_node_pool_root_disk_size_gb       = 512
 # gpu_node_pool_root_volume_type        = "gp2"
-# gpu_operator_driver_version           = "550.54.15"
+install_gpu_operator                  = "true"
+# gpu_operator_driver_version           = "550.127.05"
 # gpu_operator_namespace                = "gpu-operator"
-# gpu_operator_version                  = "v23.9.2"
+# gpu_operator_version                  = "v24.9.0"
+# install_nim_operator                  = "false"
+# nim_operator_version                  = "v1.0.0"
+# nim_operator_namespace                = "nim-operator"
 # max_cpu_nodes                         = "2"
 # max_gpu_nodes                         = "5"
 # min_cpu_nodes                         = "0"
-# min_gpu_nodes                         = "2"
-# nvaie                                 = false
-# nvaie_gpu_operator_driver_version     = "550.54.15"
-# nvaie_gpu_operator_version            = "v23.9.2"
+# min_gpu_nodes                         = "1"
 # private_subnets = [
 #   "10.0.0.0/19",
 #   "10.0.32.0/19",
@@ -48,6 +50,6 @@
 #   "10.0.128.0/19",
 #   "10.0.160.0/19"
 # ]
-# region             = "us-west-2"
+region             = "us-west-2"
 # single_nat_gateway = false
 # ssh_key            = ""
