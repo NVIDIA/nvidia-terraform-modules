@@ -20,12 +20,12 @@ AKS Variables
 ****************************/
 
 variable "cluster_name" {
-  default     = "holoscan-cluster"
+  default     = "aks-cluster"
   description = "The name of the AKS Cluster to be created"
 }
 
 variable "kubernetes_version" {
-  default     = "1.29"
+  default     = "1.30"
   description = "Version of Kubernetes to turn on. Run 'az aks get-versions --location <location> --output table' to view all available versions "
 }
 
@@ -86,8 +86,13 @@ variable "gpu_os_sku" {
 /****************************
 GPU Operator Variables
 ****************************/
+variable "install_gpu_operator" {
+  default     = "true"
+  description = "Whether to Install GPU Operator. Defaults to false available."
+}
+
 variable "gpu_operator_version" {
-  default     = "v23.9.2"
+  default     = "v24.9.0"
   description = "Version of the GPU operator to be installed"
 }
 
@@ -97,16 +102,29 @@ variable "gpu_operator_namespace" {
   description = "The namespace to deploy the NVIDIA GPU operator into"
 }
 
-variable "nvaie" {
-  type        = bool
-  default     = false
-  description = "To use the versions of GPU operator and drivers specified as part of NVIDIA AI Enterprise, set this to true. More information at https://www.nvidia.com/en-us/data-center/products/ai-enterprise"
+variable "gpu_operator_driver_version" {
+  type        = string
+  default     = "550.127.05"
+  description = "The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available."
 }
 
-variable "nvaie_gpu_operator_version" {
+/************************
+  NIM Operator Variables
+*************************/
+variable "install_nim_operator" {
+  default     = "false"
+  description = "Whether to Install NIM Operator. Defaults to false available."
+}
+
+variable "nim_operator_version" {
+  default     = "v1.0.0"
+  description = "Version of the GPU Operator to deploy. Defaults to latest available."
+}
+
+variable "nim_operator_namespace" {
   type        = string
-  default     = "v23.9.2"
-  description = "The NVIDIA Driver version of GPU Operator. Overrides `gpu_operator_version` when `nvaie` is set to `true`"
+  default     = "nim-operator"
+  description = "The namespace for the GPU operator deployment"
 }
 
 /****************************

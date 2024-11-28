@@ -49,7 +49,7 @@ variable "release_channel" {
 }
 
 variable "min_master_version" {
-  default     = "1.29"
+  default     = "1.30"
   description = "The minimum cluster version of the master."
 }
 
@@ -87,7 +87,7 @@ GKE GPU  Node Pool Variables
 ***************************/
 variable "gpu_type" {
   default     = "nvidia-tesla-v100"
-  description = "GPU SKU To attach to Holoscan GPU Node (eg. nvidia-tesla-k80)"
+  description = "GPU SKU To attach to NVIDIA GPU Node (eg. nvidia-tesla-k80)"
 }
 variable "gpu_min_node_count" {
   default     = "2"
@@ -132,15 +132,20 @@ variable "disk_size_gb" {
 /***************************
 GPU Operator Variables
 ***************************/
+variable "install_gpu_operator" {
+  default     = "true"
+  description = "Whether to Install GPU Operator. Defaults to false available."
+}
+
 variable "gpu_operator_version" {
-  default     = "v23.9.2"
-  description = "Version of the GPU Operator to deploy. Defaults to latest available. Not set when `nvaie` is set to `true`"
+  default     = "v24.9.0"
+  description = "Version of the GPU Operator to deploy. Defaults to latest available"
 }
 
 variable "gpu_operator_driver_version" {
   type        = string
-  default     = "550.54.15"
-  description = "The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available. Not set when `nvaie` is set to true"
+  default     = "550.127.05"
+  description = "The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available"
 }
 
 variable "gpu_operator_namespace" {
@@ -149,20 +154,22 @@ variable "gpu_operator_namespace" {
   description = "The namespace to deploy the NVIDIA GPU operator into"
 }
 
-variable "nvaie" {
-  type        = bool
-  default     = false
-  description = "To use the versions of GPU operator and drivers specified as part of NVIDIA AI Enterprise, set this to true. More information at https://www.nvidia.com/en-us/data-center/products/ai-enterprise"
+/************************
+  NIM Operator Variables
+*************************/
+variable "install_nim_operator" {
+  default     = "false"
+  description = "Whether to Install NIM Operator. Defaults to false available."
 }
 
-variable "nvaie_gpu_operator_version" {
-  type        = string
-  default     = "v23.9.2"
-  description = "The NVIDIA Driver version of GPU Operator. Overrides `gpu_operator_version` when `nvaie` is set to `true`"
+variable "nim_operator_version" {
+  default     = "v1.0.0"
+  description = "Version of the GPU Operator to deploy. Defaults to latest available"
 }
 
-variable "nvaie_gpu_operator_driver_version" {
+variable "nim_operator_namespace" {
   type        = string
-  default     = "550.54.15"
-  description = "The NVIDIA AI Enterprise version of the NVIDIA driver to be installed with the GPU operator. Overrides `gpu_operator_driver_version` when `nvaie` is set to `true`"
+  default     = "nim-operator"
+  description = "The namespace for the GPU operator deployment"
 }
+

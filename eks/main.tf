@@ -26,7 +26,7 @@ module "vpc" {
 ********************************************/
 
 locals {
-  holoscan_node_security_group_additional_rules = {
+  node_security_group_additional_rules = {
     ingress_self_all = {
       description = "Node to node ingress, no external ingress"
       protocol    = "-1"
@@ -82,7 +82,7 @@ module "eks" {
     }
   }
   # NodeGroup Config
-  node_security_group_additional_rules = merge(local.holoscan_node_security_group_additional_rules, var.additional_node_security_groups_rules)
+  node_security_group_additional_rules = merge(local.node_security_group_additional_rules, var.additional_node_security_groups_rules)
 
   eks_managed_node_groups = {
     gpu_node_pool = {
@@ -163,7 +163,7 @@ locals {
     filters = [
       {
         name   = "name"
-        values = ["ubuntu-eks/k8s_${var.cluster_version}/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]
+        values = ["ubuntu-eks/k8s_${var.cluster_version}/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
       },
       {
         name   = "virtualization-type"
@@ -179,15 +179,16 @@ locals {
   ami_id     = var.gpu_ami_id == "" ? data.aws_ami.lookup.id : var.gpu_ami_id
 }
 
+
 /********************************************
   GPU Operator Configuration
 ********************************************/
 resource "helm_release" "gpu_operator" {
-  count            = length(data.aws_instances.nodes) > 0 ? 1 : 0
+  count            = var.install_gpu_operator ? 1 : 0
   name             = "gpu-operator"
   repository       = "https://helm.ngc.nvidia.com/nvidia"
   chart            = "gpu-operator"
-  version          = var.nvaie ? var.nvaie_gpu_operator_version : var.gpu_operator_version
+  version          = var.gpu_operator_version
   namespace        = var.gpu_operator_namespace
   create_namespace = true
   atomic           = true
@@ -197,8 +198,24 @@ resource "helm_release" "gpu_operator" {
 
   set {
     name  = "driver.version"
-    value = var.nvaie ? var.nvaie_gpu_operator_driver_version : var.gpu_operator_driver_version
+    value = var.gpu_operator_driver_version
   }
 
 }
 
+/********************************************
+ NIM Operator Configuration
+********************************************/
+resource "helm_release" "nim_operator" {
+  count            = var.install_nim_operator ? 1 : 0
+  name             = "nim-operator"
+  repository       = "https://helm.ngc.nvidia.com/nvidia"
+  chart            = "k8s-nim-operator"
+  version          = var.nim_operator_version
+  namespace        = var.nim_operator_namespace
+  create_namespace = true
+  atomic           = true
+  cleanup_on_fail  = true
+  reset_values     = true
+  replace          = true
+}
