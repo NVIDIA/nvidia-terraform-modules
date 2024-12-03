@@ -40,7 +40,7 @@ NVIDIA Terraform Modules 24.11.0 Release
 | :---------               | :--------                                  | :-------                                   | :------- |
 | Platforms                | Amazon EKS <br> Azure AKS <br> Google GKE  | Amazon EKS <br> Azure AKS <br> Google GKE  | Amazon EKS <br> Azure AKS <br> Google GKE  |
 | Supported OS             | Ubuntu 22.04 LTS                           | Ubuntu 22.04 LTS                           | Ubuntu 22.04 LTS                           |
-| Containerd               | EKS: 1.7.x <br> AKS: 1.7.x <br> GKE: 1.7.x | EKS: 1.7.x <br> AKS: 1.7.x <br> GKE: 1.7.x | EKS: 1.7.x <br> AKS: 1.7.x <br> GKE: 1.7.x |
+| Containerd               | EKS: 1.7.12 <br> AKS: 1.7.23-1 <br> GKE: 1.7.22 | EKS: 1.7.12 <br> AKS: 1.7.23-1 <br> GKE: 1.7.22 | EKS: 1.7.12 <br> AKS: 1.7.23-1 <br> GKE: 1.7.22 |
 | NVIDIA Container Toolkit | 1.17.0                                     | 1.17.0                                     | 1.17.0                                     |
 | CNI                      | CSP dependent                              | CSP dependent                              | CSP dependent                              |
 | NVIDIA GPU Operator      | 24.9.0                                     | 24.9.0                                     | 24.9.0                                     |
