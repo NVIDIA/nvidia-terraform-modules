@@ -36,17 +36,18 @@ We strongly encourage you [configure remote state](https://developer.hashicorp.c
 
 1. Clone the repo
         
-        ```
-        git clone https://github.com/NVIDIA/nvidia-terraform-modules.git
 
-        cd eks
-        ```
+    ```
+    git clone https://github.com/NVIDIA/nvidia-terraform-modules.git
+
+    cd gke
+    ```
 
 2. Ensure you have active credentials set with the AWS CLI.
 
-        ```
-        aws configure
-        ```
+    ```
+    aws configure
+    ```
 
 3. Update `terraform.tfvars` to customize a parameter from its default value, please uncomment the line and change the content 
  
@@ -117,35 +118,35 @@ We strongly encourage you [configure remote state](https://developer.hashicorp.c
 
 4. Run the below command to initialize the configured
 
-        ```
-        terraform init
-        ```
+    ```
+    terraform init
+    ```
 
 5. Run the below command to see what will be applied
 
-        ```
-        terraform plan -out tfplan
-        ```
+    ```
+    terraform plan -out tfplan
+    ```
 
 6. Run the below command to apply the code against your AWS environment
 
-        ```
-        terraform apply tfplan
-        ```
+    ```
+    terraform apply tfplan
+    ```
 
 7. Connect to the cluster with `kubectl` by running below command with updated cluster name and region after the cluster is created
 
-        ```
-        aws eks update-kubeconfig --name <eks-cluster-name> --region <eks-region>
-        ```
+    ```
+    aws eks update-kubeconfig --name <eks-cluster-name> --region <eks-region>
+    ```
 
 #### Cleaning up / Deleting resources
 
-Run the beloe commands to delete all remaining AWS resources created by this module. You should see `Destroy complete!` message after a few minutes.
+1. Run the beloe commands to delete all remaining AWS resources created by this module. You should see `Destroy complete!` message after a few minutes.
 
-        ```
-        terraform destroy --auto-approve
-        ```
+    ```
+    terraform destroy --auto-approve
+    ```
 
 ## Running as a module
 
