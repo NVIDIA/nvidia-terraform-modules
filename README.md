@@ -1,13 +1,5 @@
 # NVIDIA Terraform Kubernetes Modules
 
-Infrastructure as code for GPU accelerated managed Kubernetes clusters. These scripts automate the deployment of GPU-Enabled Kubernetes clusters on various cloud service platforms.
-
-## Getting Started With Terraform
-
-Terraform is an open-source infrastructure as code software tool that we will use to automate the deployment of Kubernetes clusters with the required add-ons to enable NVIDIA GPUs. This repository contains Terraform [modules](https://developer.hashicorp.com/terraform/tutorials/modules/module), which are sets of Terraform configuration files ready for deployment. The modules in this repository can be incorporated into existing Terraform-managed infrastructure, or used to set up new infrastructure from scratch. You can learn more about Terraform [here](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code).
-
-You can download Terraform (CLI) [here](https://developer.hashicorp.com/terraform/downloads).
-
 ## Objective 
 
 NVIDIA Terraform Modules is a reference architecture that can help to create CSP Kubernetes Cluster with NVIDIA GPU and NIM Operators. All the components that have been listed below tested successfully together
@@ -48,7 +40,15 @@ NVIDIA Terraform Modules 24.11.0 Release
 | NVIDIA NIM Operator      | 1.0.0                                      | 1.0.0                                      | 1.0.0                                      | 
 | Helm                     | 3.16.2                                     | 3.16.2                                     | 3.16.2                                     |
 
-## Usage
+## Getting Started
+
+Infrastructure as code for GPU accelerated managed Kubernetes clusters. These scripts automate the deployment of GPU-Enabled Kubernetes clusters on various cloud service platforms.
+
+Terraform is an open-source infrastructure as code software tool that we will use to automate the deployment of Kubernetes clusters with the required add-ons to enable NVIDIA GPUs. This repository contains Terraform [modules](https://developer.hashicorp.com/terraform/tutorials/modules/module), which are sets of Terraform configuration files ready for deployment. The modules in this repository can be incorporated into existing Terraform-managed infrastructure, or used to set up new infrastructure from scratch. You can learn more about Terraform [here](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/infrastructure-as-code).
+
+You can download Terraform (CLI) [here](https://developer.hashicorp.com/terraform/downloads).
+
+### Usage
 
 Clone the repo
         
