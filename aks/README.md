@@ -26,18 +26,18 @@ We strongly encourage you [configure remote state](https://developer.hashicorp.c
 
 1. Clone the repo
         
-        ```
-        git clone https://github.com/NVIDIA/nvidia-terraform-modules.git
+    ```
+    git clone https://github.com/NVIDIA/nvidia-terraform-modules.git
 
-        cd aks
-        ```
+    cd aks
+    ```
 
 2. Logging in to Azure via the CLI
     - Run the below command , this will authenticate you to your Azure account
         
-        ```
-        az login
-        ```
+    ```
+    az login
+    ```
 
 3. Update `terraform.tfvars` file to customize a parameter from its default value, please uncomment the line and change the content
 
@@ -78,41 +78,42 @@ We strongly encourage you [configure remote state](https://developer.hashicorp.c
 
 4. Initialize the module with below command 
         
-        ```
-        terraform init
-        ```
+    ```
+    terraform init
+    ```
 
 5. Run the below command to view the proposed changes
 
-        ```
-        terraform plan -out tfplan
-        ```
+    ```
+    terraform plan -out tfplan
+    ```
 
 6. Run the below command to apply the configuration
 
-        ```
-        terraform apply tfplan
-        ```
+    ```
+    terraform apply tfplan
+    ```
 
 7. Once cluster is created run the below command with aks cluster name and resource group name to get kubeconfig so you are able to run `kubectl` commands
 
-        ```
-        az aks get-credentials --resource-group aks-cluster-rg --name aks-cluster
-        ```
+    ```
+    az aks get-credentials --resource-group aks-cluster-rg --name aks-cluster
+    ```
 
 #### Cleaning up / Deleting resources
 
 1. Run the beloe commands to delete all remaining Azure resources created by this module. You should see `Destroy complete!` message after a few minutes.
         
-        ```
-        terraform state rm kubernetes_namespace_v1.gpu-operator
+    ```
+    terraform state rm kubernetes_namespace_v1.gpu-operator
 
-        terraform state rm kubernetes_namespace_v1.nim-operator
-        ```
+    terraform state rm kubernetes_namespace_v1.nim-operator
+    ```
 
-        ```
-        terraform destroy --auto-approve
-
+    ```
+    terraform destroy --auto-approve
+    ```
+    
 ## Running as a module
 
 Call the AKS module by adding this to an existing Terraform file:
