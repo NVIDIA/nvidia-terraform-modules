@@ -141,7 +141,7 @@ variable "install_gpu_operator" {
 }
 
 variable "gpu_operator_version" {
-  default     = "v25.4.0"
+  default     = "v25.3.0"
   description = "Version of the GPU Operator to deploy. Defaults to latest available"
 }
 

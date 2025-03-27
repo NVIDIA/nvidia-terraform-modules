@@ -46,7 +46,7 @@ project_id                          = "xx-xxxx-xxxx"
 # install_gpu_operator              = "true"
 # gpu_operator_driver_version       = "570.124.06"
 # gpu_operator_namespace            = "gpu-operator"
-# gpu_operator_version              = "v25.4.0"
+# gpu_operator_version              = "v25.3.0"
 
 
 ########################
