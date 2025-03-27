@@ -10,10 +10,11 @@
 ########################
 
 # MANDATORY PARAMETER: project_id
-# Uncomment and Modify other parameters if needed
-# Useful link: https://cloud.google.com/kubernetes-engine/docs/how-to/gpus#limitations 
-
 project_id                          = "xx-xxxx-xxxx"
+
+
+# Uncomment and Modify other parameters if needed
+# Useful link: https://cloud.google.com/kubernetes-engine/docs/how-to/gpus#limitations
 
 # cluster_name                      = "gke-cluster"
 # min_master_version                = "1.32"
