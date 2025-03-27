@@ -10,6 +10,7 @@ variable "project_id" {
 
 variable "region" {
   description = "The Region resources (VPC, GKE, Compute Nodes) will be created in"
+  default     = "us-west1"
 }
 
 variable "vpc_enabled" {
@@ -34,11 +35,13 @@ variable "subnetwork" {
 GKE Variables
 ***************************/
 variable "cluster_name" {
+  default     = "gke-cluster"
   description = "Name of the Kubernetes Cluster to provision"
   type        = string
 }
 
 variable "node_zones" {
+  default     = ["us-west1-b"]
   description = "Specify zones to put nodes in (must be in same region defined above)"
   type        = list(any)
 }
