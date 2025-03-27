@@ -21,16 +21,6 @@ When NVIDIA Terraform Modules is released, the previous release enters maintenan
 | [24.11.0](https://github.com/NVIDIA/cloud-native-stack/releases/tag/v24.11.0)                   | Maintenance | 
 
 
-
-## CSP Managed K8s Services Life Cycle
-
-Each CSP has its own end of life date for the versions of Kubernetes they support. For more information see:
-
-- [Amazon EKS release calendar](https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html#kubernetes-release-calendar)
-- [Azure AKS release calendar](https://learn.microsoft.com/en-us/azure/aks/supported-kubernetes-versions?tabs=azure-cli#aks-kubernetes-release-calendar)
-- [GCP GKE release calendar](https://cloud.google.com/kubernetes-engine/docs/release-schedule#schedule_for_static_no-channel_versions).
-
-
 ## Support Matrix
 
 The Kubernetes clusters provisioned by the modules in this repository provide tested and certified versions of Kubernetes, the NVIDIA GPU operator, and NVIDIA NIM Operator.
@@ -52,6 +42,16 @@ NVIDIA Terraform Modules 25.4.0 Release:
 | NVIDIA DataCenter Driver | 570.124.06                                 | 570.124.06                                 | 570.124.06                                 |
 | NVIDIA NIM Operator      | 1.0.1                                      | 1.0.1                                      | 1.0.1                                      | 
 | Helm                     | 3.17.2                                     | 3.17.2                                     | 3.17.2                                     |
+
+
+### CSP Managed K8s Services Life Cycle
+
+Each CSP has its own end of life date for the versions of Kubernetes they support. For more information see:
+
+- [Amazon EKS release calendar](https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html#kubernetes-release-calendar)
+- [Azure AKS release calendar](https://learn.microsoft.com/en-us/azure/aks/supported-kubernetes-versions?tabs=azure-cli#aks-kubernetes-release-calendar)
+- [GCP GKE release calendar](https://cloud.google.com/kubernetes-engine/docs/release-schedule#schedule_for_static_no-channel_versions).
+
 
 ## Getting Started
 
