@@ -36,8 +36,9 @@ NVIDIA Terraform Modules 25.4.0 Release:
 | Supported OS             | Ubuntu 24.04 LTS <br> Ubuntu 22.04 LTS     | Ubuntu 24.04 LTS <br> Ubuntu 22.04 LTS     | Ubuntu 24.04 LTS <br> Ubuntu 22.04 LTS     |
 | Kernel                   | EKS: 1.7.12 <br> AKS: 1.7.23-1 <br> GKE: 6.8.0-1017-gke | EKS: 1.7.12 <br> AKS: 1.7.23-1 <br> GKE: 6.8.0-1017-gke | EKS: 1.7.12 <br> AKS: 1.7.23-1 <br> GKE: 6.8.0-1017-gke |
 | Containerd               | EKS: 1.7.12 <br> AKS: 1.7.23-1 <br> GKE: 1.7.24 | EKS: 1.7.12 <br> AKS: 1.7.23-1 <br> GKE: 1.7.24 | EKS: 1.7.12 <br> AKS: 1.7.23-1 <br> GKE: 1.7.24 |
-| NVIDIA Container Toolkit | 1.17.5                                     | 1.17.5                                     | 1.17.5                                     |
 | CNI                      | CSP dependent                              | CSP dependent                              | CSP dependent                              |
+| CSI                      | CSP dependent                              | CSP dependent                              | CSP dependent                              |
+| NVIDIA Container Toolkit | 1.17.5                                     | 1.17.5                                     | 1.17.5                                     |
 | NVIDIA GPU Operator      | 25.3.0                                     | 25.3.0                                     | 25.3.0                                     |
 | NVIDIA DataCenter Driver | 570.124.06                                 | 570.124.06                                 | 570.124.06                                 |
 | NVIDIA NIM Operator      | 1.0.1                                      | 1.0.1                                      | 1.0.1                                      | 
