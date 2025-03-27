@@ -19,10 +19,10 @@ cluster_name                      = "gke-cluster"
 # gpu_count                         = "1"
 # gpu_instance_tags                 = []
 #https://cloud.google.com/kubernetes-engine/docs/how-to/gpus#limitations
-# gpu_instance_type                 = "nvidia-tesla-t4"
+# gpu_instance_type                 = "n1-standard-4"
 # gpu_max_node_count                = "5"
 # gpu_min_node_count                = "2"
-# gpu_type                          = "nvidia-tesla-v100"
+# gpu_type                          = "nvidia-tesla-t4"
 # network                           = ""
 # num_cpu_nodes                     = 1
 # num_gpu_nodes                     = 1
@@ -42,9 +42,9 @@ node_zones                        =  ["us-west1-b"]
 ########################
 
 install_gpu_operator              = "true"
-# gpu_operator_driver_version       = "550.127.05"
+# gpu_operator_driver_version       = "570.124.06"
 # gpu_operator_namespace            = "gpu-operator"
-# gpu_operator_version              = "v24.9.0"
+# gpu_operator_version              = "v25.4.0"
 
 
 ########################
@@ -52,6 +52,6 @@ install_gpu_operator              = "true"
 ########################
 
 # install_nim_operator              = "false"
-# nim_operator_version              = "v1.0.0"
+# nim_operator_version              = "v1.0.1"
 # nim_operator_namespace            = "nim-operator"
 
