@@ -45,9 +45,9 @@ This module was created with and tested on Linux using Bash, it may or may not w
 
 2. Update `terraform.tfvars` to customize a parameter from its default value, please uncomment the line and change the content
 
-    Mandatory: provide your project IDi by updating the parameter `project_id`. 
+    Mandatory: provide your project ID by updating the parameter `project_id`. 
 
-You can get the `projcet_id` from your [GCP console](#https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects).
+You can get the `project_id` from your [GCP console](#https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects).
 
    ```
    project_id                          = "xx-xxxx-xxxx"
