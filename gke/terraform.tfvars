@@ -8,14 +8,13 @@
 ########################
 #  CLUSTER PARAMETERS  #
 ########################
+# Useful link: https://cloud.google.com/kubernetes-engine/docs/how-to/gpus#limitations
 
-# MANDATORY PARAMETER: project_id
+# MANDATORY PARAMETER:
 project_id                          = "xx-xxxx-xxxx"
 
 
-# Uncomment and Modify other parameters if needed
-# Useful link: https://cloud.google.com/kubernetes-engine/docs/how-to/gpus#limitations
-
+# Uncomment and Modify below parameters if needed:
 # cluster_name                      = "gke-cluster"
 # min_master_version                = "1.32"
 # cpu_instance_type                 = "n1-standard-4"
