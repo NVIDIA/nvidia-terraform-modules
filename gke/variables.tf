@@ -35,7 +35,7 @@ variable "subnetwork" {
 GKE Variables
 ***************************/
 variable "cluster_name" {
-  default     = "gke-cluster"
+  default     = "gke-cluster-tf"
   description = "Name of the Kubernetes Cluster to provision"
   type        = string
 }

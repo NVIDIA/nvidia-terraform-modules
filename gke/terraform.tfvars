@@ -15,7 +15,7 @@ project_id                          = "xx-xxxx-xxxx"
 
 
 # Uncomment and Modify below parameters if needed:
-# cluster_name                      = "gke-cluster"
+# cluster_name                      = "gke-cluster-tf"
 # min_master_version                = "1.32"
 # cpu_instance_type                 = "n1-standard-4"
 # cpu_max_node_count                = "5"
