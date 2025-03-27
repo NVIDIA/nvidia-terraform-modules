@@ -25,7 +25,7 @@ This module was created with and tested on Linux using Bash, it may or may not w
 
 1. Requires the `gcloud` SDK binary -- [Download here](https://cloud.google.com/sdk/docs/install)
 
-2. Requires the Terraform cli @ Version 1.3.4 or higher -- [Download here](https://developer.hashicorp.com/terraform/downloads)
+2. Requires the Terraform cli @ Version 1.2.4 or higher -- [Download here](https://developer.hashicorp.com/terraform/downloads)
 
 3. To run this module assumes elevated permissions (Kubernetes Engine Admin) in your GCP account, specifically permissions to create VPC networks, GKE clusters, and Compute nodes. This will not work on accounts using the "free plan" as you cannot use GPU nodes until a billing account is attached and activated. 
 
@@ -129,7 +129,7 @@ If you need additional values added, please open a merge request.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.4 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | 6.27.0 |
 | <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | 6.27.0 |
 
@@ -140,7 +140,7 @@ If you need additional values added, please open a merge request.
 | <a name="provider_google"></a> [google](#provider\_google) | 6.27.0 |
 | <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | 6.27.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | n/a |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | n/a |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.19.0 |
 
 ## Modules
 

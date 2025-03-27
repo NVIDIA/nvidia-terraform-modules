@@ -10,7 +10,11 @@ terraform {
       source  = "hashicorp/google-beta"
       version = "6.27.0"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~>2.19.0"
+    }
   }
 
-  required_version = ">= 1.0.0"
+  required_version = ">= 1.2.4"
 }
