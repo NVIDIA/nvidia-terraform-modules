@@ -55,6 +55,7 @@ The GUID input can be retrieved in the Azure portal by searching for the desired
 
    Mandatory: provide your subscription_id
 
+
     ```
     subscription_id              = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     ```
