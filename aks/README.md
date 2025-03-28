@@ -131,14 +131,14 @@ If you need additional values added, please open a pull request.        ```
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.4 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~>3.48.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~>4.24.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~>2.19.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~>3.48.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~>4.24.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | n/a |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | ~>2.19.0 |
 
@@ -178,9 +178,9 @@ No modules.
 | <a name="input_gpu_node_pool_disk_size"></a> [gpu\_node\_pool\_disk\_size](#input\_gpu\_node\_pool\_disk\_size) | Disk size in GB of nodes in the Default GPU pool | `number` | `100` | no |
 | <a name="input_gpu_node_pool_max_count"></a> [gpu\_node\_pool\_max\_count](#input\_gpu\_node\_pool\_max\_count) | Max count of nodes in Default GPU pool | `number` | `5` | no |
 | <a name="input_gpu_node_pool_min_count"></a> [gpu\_node\_pool\_min\_count](#input\_gpu\_node\_pool\_min\_count) | Min count of number of nodes in Default GPU pool | `number` | `2` | no |
-| <a name="input_gpu_operator_driver_version"></a> [gpu\_operator\_driver\_version](#input\_gpu\_operator\_driver\_version) | The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available. | `string` | `"550.127.05"` | no |
+| <a name="input_gpu_operator_driver_version"></a> [gpu\_operator\_driver\_version](#input\_gpu\_operator\_driver\_version) | The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available. | `string` | `"570.124.06"` | no |
 | <a name="input_gpu_operator_namespace"></a> [gpu\_operator\_namespace](#input\_gpu\_operator\_namespace) | The namespace to deploy the NVIDIA GPU operator into | `string` | `"gpu-operator"` | no |
-| <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | Version of the GPU operator to be installed | `string` | `"v24.9.0"` | no |
+| <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | Version of the GPU operator to be installed | `string` | `"v25.3.0"` | no |
 | <a name="input_gpu_os_sku"></a> [gpu\_os\_sku](#input\_gpu\_os\_sku) | Specifies the OS SKU used by the agent pool. Possible values include: Ubuntu, CBLMariner, Mariner, Windows2019, Windows2022 | `string` | `"Ubuntu"` | no |
 | <a name="input_install_gpu_operator"></a> [install\_gpu\_operator](#input\_install\_gpu\_operator) | Whether to Install GPU Operator. Defaults to false available. | `string` | `"true"` | no |
 | <a name="input_install_nim_operator"></a> [install\_nim\_operator](#input\_install\_nim\_operator) | Whether to Install NIM Operator. Defaults to false available. | `string` | `"false"` | no |
