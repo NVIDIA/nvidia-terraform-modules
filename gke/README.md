@@ -35,6 +35,13 @@ This module was created with and tested on Linux using Bash, it may or may not w
 
 ## Usage 
 
+0. Authenticate to GCP:
+
+   ```
+   gcloud auth login
+   ```
+
+
 1. Run this command to clone the repo:
 
     ```
