@@ -44,8 +44,8 @@ We strongly encourage you [configure remote state](https://developer.hashicorp.c
    Mandatory: provide your admin_group_object_ids    
 
 - Add the IDs of the members or groups who should have cluster access to the variable `admin_group_object_ids`. 
+The GUID input can be retrieved in the Azure portal by searching for the desired user or group, for more info please refer [Find Object Id](https://learn.microsoft.com/en-us/partner-center/marketplace/find-tenant-object-id)
 
-        The GUID input can be retrieved in the Azure portal by searching for the desired user or group, for more info please refer [Find Object Id](https://learn.microsoft.com/en-us/partner-center/marketplace/find-tenant-object-id)
 
     ```
     admin_group_object_ids       = ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"]
