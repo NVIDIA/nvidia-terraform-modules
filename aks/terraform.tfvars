@@ -6,12 +6,13 @@
 
 
 # MANDATORY PARAMETER:
-admin_group_object_ids       = ["xxxxxxx-xxx-xxxx-xxxx-xxxxxxxxxx"]
+admin_group_object_ids       = ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"]
+subscription_id              = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
 # Uncomment and Modify below parameters if needed:
 # cluster_name                 = "aks-cluster-tf"
 # kubernetes_version           = "1.32"
-# location                     = "westus2"
+# location                     = "eastus"
 # cpu_machine_type             = "Standard_D16_v5"
 # cpu_node_pool_count          = 1
 # cpu_node_pool_disk_size      = 100

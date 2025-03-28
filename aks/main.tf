@@ -26,15 +26,11 @@ resource "azurerm_kubernetes_cluster" "aks" {
   default_node_pool {
     name                = "akscpu"
     node_count          = var.cpu_node_pool_count
-    enable_auto_scaling = true
-    min_count           = var.cpu_node_pool_min_count
-    max_count           = var.cpu_node_pool_max_count
     vm_size             = var.cpu_machine_type
     os_disk_size_gb     = var.cpu_node_pool_disk_size
   }
 
   azure_active_directory_role_based_access_control {
-    managed                = true
     azure_rbac_enabled     = true
     admin_group_object_ids = var.admin_group_object_ids
   }
@@ -69,9 +65,6 @@ resource "azurerm_kubernetes_cluster_node_pool" "aks" {
   name                  = "aksgpu1"
   kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
   node_count            = var.gpu_node_pool_count
-  enable_auto_scaling   = true
-  min_count             = var.gpu_node_pool_min_count
-  max_count             = var.gpu_node_pool_max_count
   vm_size               = var.gpu_machine_type
   os_disk_size_gb       = var.gpu_node_pool_disk_size
   tags = {

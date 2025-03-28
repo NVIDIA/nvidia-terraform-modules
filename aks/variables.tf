@@ -13,7 +13,7 @@ variable "existing_resource_group_name" {
 
 variable "location" {
   description = "The region to create resources in"
-  default     = "westus2"
+  default     = "eastus"
 }
 
 /****************************
@@ -138,4 +138,13 @@ variable "admin_group_object_ids" {
   This is not the email address of the group, the GUID can be found in the Azure panel by searching for the AD Group
   NOTE: You will need Azure "Owner" role (not "Contributor") to attach an AD role to the Kubernetes cluster.
   EOH
+}
+
+
+
+/****************************
+Subscription ID Variables
+****************************/
+variable "subscription_id" {
+  description = "Subscription ID"
 }
