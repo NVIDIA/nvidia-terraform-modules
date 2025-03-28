@@ -7,7 +7,7 @@ This module was created and tested on Linux and MacOS.
 - Azure Resource Group
 - AKS Cluster
 - 1x CPU nodepool (defaults to 1x CPU node -- Standard_D16_v5)
-- 2x GPU nodepool (defaults to 1x T4 -- Standard_NC6s_v3)
+- 1x GPU nodepool (defaults to 2x GPU node -- Standard_NC4as_T4_v3 with T4)
 - Installs Latest version of GPU Operator
 
 ## Prerequisites
@@ -29,7 +29,7 @@ We strongly encourage you [configure remote state](https://developer.hashicorp.c
     ```
     git clone https://github.com/NVIDIA/nvidia-terraform-modules.git
 
-    cd aks
+    cd nvidia-terraform-modules/aks
     ```
 
 2. Logging in to Azure via the CLI
@@ -41,63 +41,46 @@ We strongly encourage you [configure remote state](https://developer.hashicorp.c
 
 3. Update `terraform.tfvars` file to customize a parameter from its default value, please uncomment the line and change the content
 
-    - update `cluster_name`, if needed
-    - update `location`, if needed
-    - Add the IDs of the members or groups who should have cluster access to the variable `admin_group_object_ids`. 
+   Mandatory: provide your admin_group_object_ids    
+
+- Add the IDs of the members or groups who should have cluster access to the variable `admin_group_object_ids`. 
 
         The GUID input can be retrieved in the Azure portal by searching for the desired user or group, for more info please refer [Find Object Id](https://learn.microsoft.com/en-us/partner-center/marketplace/find-tenant-object-id)
 
-    - Set `true` for `install_nim_operator`, if you want to install NIM Operator
+    ```
+    admin_group_object_ids       = ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"]
+    ```
 
-        ```
-        admin_group_object_ids       = ["xxxxxxx-xxx-xxxx-xxxx-xxxxxxxxxx"]
-        cluster_name                 = "aks-cluster"
-        # cpu_machine_type             = "Standard_D16_v5"
-        # cpu_node_pool_count          = 1
-        # cpu_node_pool_disk_size      = 100
-        # cpu_node_pool_max_count      = 5
-        # cpu_node_pool_min_count      = 1
-        # cpu_os_sku                   = "Ubuntu"
-        # existing_resource_group_name = ""
-        # gpu_machine_type             = "Standard_NC6s_v3"
-        # gpu_node_pool_count          = 2
-        # gpu_node_pool_disk_size      = 100
-        # gpu_node_pool_max_count      = 5
-        # gpu_node_pool_min_count      = 1 
-        install_gpu_operator         = "true"
-        # gpu_operator_namespace       = "gpu-operator"
-        # gpu_operator_version         = "v24.9.0"
-        # gpu_operator_driver_version  = "550.127.05"
-        # install_nim_operator         = "false"
-        # nim_operator_version         = "v1.0.0"
-        # nim_operator_namespace       = "nim-operator"
-        # gpu_os_sku                   = "Ubuntu"
-        # kubernetes_version           = "1.30"
-        location                     = "westus2"
-        ```
 
-4. Initialize the module with below command 
+   Mandatory: provide your subscription_id
+
+    ```
+    subscription_id              = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    ```
+
+
+4. Initialize the module with the command:
         
     ```
     terraform init
     ```
 
-5. Run the below command to view the proposed changes
+5. Run this command to view the proposed changes:
 
     ```
     terraform plan -out tfplan
     ```
 
-6. Run the below command to apply the configuration
+6. Run the below command to apply the configuration:
 
     ```
     terraform apply tfplan
     ```
 
-7. Once cluster is created run the below command with aks cluster name and resource group name to get kubeconfig so you are able to run `kubectl` commands
+7. Once cluster is created run the below command with aks cluster name and resource group name to get kubeconfig so you are able to run `kubectl` commands:
 
     ```
-    az aks get-credentials --resource-group aks-cluster-rg --name aks-cluster
+    az aks get-credentials --resource-group aks-cluster-tf-rg --name aks-cluster-tf
     ```
 
 #### Cleaning up / Deleting resources
