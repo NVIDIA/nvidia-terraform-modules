@@ -67,6 +67,12 @@ resource "azurerm_kubernetes_cluster_node_pool" "aks" {
   node_count            = var.gpu_node_pool_count
   vm_size               = var.gpu_machine_type
   os_disk_size_gb       = var.gpu_node_pool_disk_size
+
+# Enable autoscaling using min_count and max_count
+  auto_scaling_enabled = true
+  min_count = var.gpu_node_pool_min_count
+  max_count = var.gpu_node_pool_max_count
+
   tags = {
     group      = "aks"
     managed_by = "Terraform"
