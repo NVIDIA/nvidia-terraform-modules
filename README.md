@@ -33,9 +33,9 @@ NVIDIA Terraform Modules 25.4.0 Release:
 | TF Modules               | K8s 1.32                                   | K8s 1.31                                   | K8s 1.30 |
 | :---------               | :--------                                  | :-------                                   | :------- |
 | Platforms                | Amazon EKS <br> Azure AKS <br> Google GKE  | Amazon EKS <br> Azure AKS <br> Google GKE  | Amazon EKS <br> Azure AKS <br> Google GKE  |
-| Supported OS             | Ubuntu 24.04 LTS (GKE/EKS) <br> Ubuntu 22.04 LTS (AKS)     | Ubuntu 24.04 LTS (GKE/EKS) <br> Ubuntu 22.04 LTS (AKS)     | Ubuntu 24.04 LTS (GKE/EKS) <br> Ubuntu 22.04 LTS (AKS)     |
-| Kernel                   | EKS: 1.7.12 <br> AKS: 5.15.0-1082-azure <br> GKE: 6.8.0-1017-gke | EKS: 1.7.12 <br> AKS: 5.15.0-1082-azure <br> GKE: 6.8.0-1017-gke | EKS: 1.7.12 <br> AKS: 5.15.0-1082-azure <br> GKE: 6.8.0-1017-gke |
-| Containerd               | EKS: 1.7.12 <br> AKS: 1.7.26-1 <br> GKE: 1.7.24 | EKS: 1.7.12 <br> AKS: 1.7.26-1 <br> GKE: 1.7.24 | EKS: 1.7.12 <br> AKS: 1.7.26-1 <br> GKE: 1.7.24 |
+| Supported OS             | Ubuntu 24.04 LTS (GKE) <br> Ubuntu 22.04 LTS (AKS/EKS)     | Ubuntu 24.04 LTS (GKE) <br> Ubuntu 22.04 LTS (AKS/EKS)     | Ubuntu 24.04 LTS (GKE) <br> Ubuntu 22.04 LTS (AKS/EKS)     |
+| Kernel                   | EKS: 6.8.0-1024-aws <br> AKS: 5.15.0-1082-azure <br> GKE: 6.8.0-1017-gke | EKS: 6.8.0-1024-aws <br> AKS: 5.15.0-1082-azure <br> GKE: 6.8.0-1017-gke | EKS: 6.8.0-1024-aws <br> AKS: 5.15.0-1082-azure <br> GKE: 6.8.0-1017-gke |
+| Containerd               | EKS: 1.7.24 <br> AKS: 1.7.26-1 <br> GKE: 1.7.24 | EKS: 1.7.24 <br> AKS: 1.7.26-1 <br> GKE: 1.7.24 | EKS: 1.7.24 <br> AKS: 1.7.26-1 <br> GKE: 1.7.24 |
 | CNI                      | CSP dependent                              | CSP dependent                              | CSP dependent                              |
 | CSI                      | CSP dependent                              | CSP dependent                              | CSP dependent                              |
 | NVIDIA GPU Operator      | 25.3.0                                     | 25.3.0                                     | 25.3.0                                     |
