@@ -11,19 +11,20 @@ variable "aws_profile" {
   description = ""
 }
 
-variable "region" {
+variable "aws_region" {
   default     = "us-west-2"
   description = "AWS region to provision the Kubernetes Cluster"
 }
 
 
 variable "cluster_name" {
+  default     = "eks-cluster-tf"
   type = string
 }
 
 variable "cluster_version" {
   type        = string
-  default     = "1.30"
+  default     = "1.32"
   description = "Version of EKS to install on the control plane (Major and Minor version only, do not include the patch)"
 }
 /************************
@@ -35,13 +36,13 @@ variable "install_gpu_operator" {
 }
 
 variable "gpu_operator_version" {
-  default     = "v24.9.0"
+  default     = "v25.3.0"
   description = "Version of the GPU Operator to deploy. Defaults to latest available. "
 }
 
 variable "gpu_operator_driver_version" {
   type        = string
-  default     = "550.127.05"
+  default     = "570.124.06"
   description = "The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available."
 }
 
@@ -60,7 +61,7 @@ variable "install_nim_operator" {
 }
 
 variable "nim_operator_version" {
-  default     = "v1.0.0"
+  default     = "v1.0.1"
   description = "Version of the GPU Operator to deploy. Defaults to latest available."
 }
 
@@ -85,7 +86,7 @@ variable "gpu_ami_id" {
 
 variable "gpu_instance_type" {
   type        = string
-  default     = "g6e.12xlarge"
+  default     = "g4dn.2xlarge"
   description = "GPU EC2 worker node instance type"
 }
 
