@@ -40,7 +40,7 @@ We strongly encourage you [configure remote state](https://developer.hashicorp.c
     ```
     git clone https://github.com/NVIDIA/nvidia-terraform-modules.git
 
-    cd gke
+    cd nvidia-terraform-modules/eks
     ```
 
 2. Ensure you have active credentials set with the AWS CLI.
@@ -51,70 +51,6 @@ We strongly encourage you [configure remote state](https://developer.hashicorp.c
 
 3. Update `terraform.tfvars` to customize a parameter from its default value, please uncomment the line and change the content 
  
-    Update `cluster_name` and `region` if needed.
-
-   - By default, this module will deploy the cluster into a new VPC. If you want to deploy the cluster into an existing VPC, you must also uncomment and set the `existing_vpc_details` variable.
-   - Set `true` for `install_nim_operator`, if you want to install NIM Operator
-
-        ```
-        # additional_node_security_groups_rules = {}
-        # additional_security_group_ids         = []
-        # additional_user_data                  = ""
-        # aws_profile                           = "development"
-        # cidr_block                            = "10.0.0.0/16"
-        cluster_name                          = "eks-cluster"
-        # cluster_version                       = "1.30"
-        # cpu_instance_type                     = "t2.xlarge"
-        # cpu_node_pool_additional_user_data    = ""
-        # cpu_node_pool_delete_on_termination   = true
-        # cpu_node_pool_root_disk_size_gb       = 512
-        # cpu_node_pool_root_volume_type        = "gp2"
-        # desired_count_cpu_nodes               = "1"
-        # desired_count_gpu_nodes               = "2"
-        # enable_dns_hostnames                  = true
-        # enable_dns_support                    = true
-        # enable_nat_gateway                    = true
-        # existing_vpc_details                  = ""
-        # gpu_ami_id                            = ""
-        # For Instances refer https://docs.aws.amazon.com/dlami/latest/devguide/gpu.html
-        # gpu_instance_type                     = "g6e.12xlarge"
-        # gpu_node_pool_additional_user_data    = ""
-        # gpu_node_pool_delete_on_termination   = true
-        # gpu_node_pool_root_disk_size_gb       = 512
-        # gpu_node_pool_root_volume_type        = "gp2"
-        install_gpu_operator                  = "true"
-        # gpu_operator_driver_version           = "550.127.05"
-        # gpu_operator_namespace                = "gpu-operator"
-        # gpu_operator_version                  = "v24.9.0"
-        # install_nim_operator                  = "false"
-        # nim_operator_version                  = "v1.0.0"
-        # nim_operator_namespace                = "nim-operator"
-        # max_cpu_nodes                         = "2"
-        # max_gpu_nodes                         = "5"
-        # min_cpu_nodes                         = "0"
-        # min_gpu_nodes                         = "1"
-        # private_subnets = [
-        #   "10.0.0.0/19",
-        #   "10.0.32.0/19",
-        #   "10.0.64.0/19"
-        # ]
-        # public_subnets = [
-        #   "10.0.96.0/19",
-        #   "10.0.128.0/19",
-        #   "10.0.160.0/19"
-        # ]
-        region             = "us-west-2"
-        # single_nat_gateway = false
-        # ssh_key            = ""
-        ```
-
-   Alternatively, you can change any variable names or parameters in any of the following ways:
-   - added directly to the `variables.tf`
-   - passed in from from the command line with the `-var` flag
-   - passed in as environment variables
-   - passed in from the command line when prompted 
-   
-   See Terraform [input variables](https://developer.hashicorp.com/terraform/language/values/variables#assigning-values-to-root-module-variables) for more information.
 
 4. Run the below command to initialize the configured
 
@@ -166,15 +102,15 @@ If you need additional values added, please open a pull request.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.2.4 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~>4.45.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.4 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~>5.93.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~>2.19.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~>4.45.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | ~>5.93.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | n/a |
 
 ## Modules
@@ -225,9 +161,9 @@ If you need additional values added, please open a pull request.
 | <a name="input_gpu_node_pool_delete_on_termination"></a> [gpu\_node\_pool\_delete\_on\_termination](#input\_gpu\_node\_pool\_delete\_on\_termination) | Delete the VM nodes root filesystem on each node of the instance type. This is set to true by default, but can be changed when desired when using the 'local-storage provisioner' and are keeping important application data on the nodes | `bool` | `true` | no |
 | <a name="input_gpu_node_pool_root_disk_size_gb"></a> [gpu\_node\_pool\_root\_disk\_size\_gb](#input\_gpu\_node\_pool\_root\_disk\_size\_gb) | The size of the root disk on all GPU nodes in the EKS-managed GPU-only Node Pool. This is primarily for container image storage on the node | `number` | `512` | no |
 | <a name="input_gpu_node_pool_root_volume_type"></a> [gpu\_node\_pool\_root\_volume\_type](#input\_gpu\_node\_pool\_root\_volume\_type) | The type of disk to use for the GPU node pool root disk (eg. gp2, gp3). Note, this is different from the type of disk used by applications via EKS Storage classes/PVs & PVCs | `string` | `"gp2"` | no |
-| <a name="input_gpu_operator_driver_version"></a> [gpu\_operator\_driver\_version](#input\_gpu\_operator\_driver\_version) | The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available. | `string` | `"550.127.05"` | no |
+| <a name="input_gpu_operator_driver_version"></a> [gpu\_operator\_driver\_version](#input\_gpu\_operator\_driver\_version) | The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available. | `string` | `"570.124.06"` | no |
 | <a name="input_gpu_operator_namespace"></a> [gpu\_operator\_namespace](#input\_gpu\_operator\_namespace) | The namespace for the GPU operator deployment | `string` | `"gpu-operator"` | no |
-| <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | Version of the GPU Operator to deploy. Defaults to latest available. | `string` | `"v24.9.0"` | no |
+| <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | Version of the GPU Operator to deploy. Defaults to latest available. | `string` | `"v25.3.0"` | no |
 | <a name="input_install_gpu_operator"></a> [install\_gpu\_operator](#input\_install\_gpu\_operator) | Whether to Install GPU Operator. Defaults to false available. | `string` | `"true"` | no |
 | <a name="input_install_nim_operator"></a> [install\_nim\_operator](#input\_install\_nim\_operator) | Whether to Install NIM Operator. Defaults to false available. | `string` | `"false"` | no |
 | <a name="input_max_cpu_nodes"></a> [max\_cpu\_nodes](#input\_max\_cpu\_nodes) | Maximum number of CPU nodes in the Autoscaling Group | `string` | `"2"` | no |
@@ -235,7 +171,7 @@ If you need additional values added, please open a pull request.
 | <a name="input_min_cpu_nodes"></a> [min\_cpu\_nodes](#input\_min\_cpu\_nodes) | Minimum number of CPU nodes in the Autoscaling Group | `string` | `"0"` | no |
 | <a name="input_min_gpu_nodes"></a> [min\_gpu\_nodes](#input\_min\_gpu\_nodes) | Minimum number of GPU nodes in the Autoscaling Group | `string` | `"2"` | no |
 | <a name="input_nim_operator_namespace"></a> [nim\_operator\_namespace](#input\_nim\_operator\_namespace) | The namespace for the GPU operator deployment | `string` | `"nim-operator"` | no |
-| <a name="input_nim_operator_version"></a> [nim\_operator\_version](#input\_nim\_operator\_version) | Version of the GPU Operator to deploy. Defaults to latest available. | `string` | `"v1.0.0"` | no |
+| <a name="input_nim_operator_version"></a> [nim\_operator\_version](#input\_nim\_operator\_version) | Version of the GPU Operator to deploy. Defaults to latest available. | `string` | `"v1.0.1"` | no |
 | <a name="input_private_subnets"></a> [private\_subnets](#input\_private\_subnets) | List of subnet ranges for the Private VPC | `list(any)` | <pre>[<br>  "10.0.0.0/19",<br>  "10.0.32.0/19",<br>  "10.0.64.0/19"<br>]</pre> | no |
 | <a name="input_public_subnets"></a> [public\_subnets](#input\_public\_subnets) | List of subnet ranges for the Private VPC | `list(any)` | <pre>[<br>  "10.0.96.0/19",<br>  "10.0.128.0/19",<br>  "10.0.160.0/19"<br>]</pre> | no |
 | <a name="input_region"></a> [region](#input\_region) | AWS region to provision the Kubernetes Cluster | `string` | `"us-west-2"` | no |
