@@ -7,7 +7,7 @@ This module was created and tested on Linux and MacOS.
 - Azure Resource Group
 - AKS Cluster
 - 1x CPU nodepool (defaults to 1x CPU node -- Standard_D16_v5)
-- 2x GPU nodepool (defaults to 1x T4 -- Standard_NC6s_v3)
+- 1x GPU nodepool (defaults to 2x GPU node -- Standard_NC4as_T4_v3 with T4)
 - Installs Latest version of GPU Operator
 
 ## Prerequisites
@@ -29,7 +29,7 @@ We strongly encourage you [configure remote state](https://developer.hashicorp.c
     ```
     git clone https://github.com/NVIDIA/nvidia-terraform-modules.git
 
-    cd aks
+    cd nvidia-terraform-modules/aks
     ```
 
 2. Logging in to Azure via the CLI
@@ -41,63 +41,49 @@ We strongly encourage you [configure remote state](https://developer.hashicorp.c
 
 3. Update `terraform.tfvars` file to customize a parameter from its default value, please uncomment the line and change the content
 
-    - update `cluster_name`, if needed
-    - update `location`, if needed
-    - Add the IDs of the members or groups who should have cluster access to the variable `admin_group_object_ids`. 
+   Mandatory: provide your admin_group_object_ids    
 
-        The GUID input can be retrieved in the Azure portal by searching for the desired user or group, for more info please refer [Find Object Id](https://learn.microsoft.com/en-us/partner-center/marketplace/find-tenant-object-id)
 
-    - Set `true` for `install_nim_operator`, if you want to install NIM Operator
+Add the IDs of the members or groups who should have cluster access to the variable `admin_group_object_ids`. 
+The GUID input can be retrieved in the Azure portal by searching for the desired user or group, for more info please refer [Find Object Id](https://learn.microsoft.com/en-us/partner-center/marketplace/find-tenant-object-id).
 
-        ```
-        admin_group_object_ids       = ["xxxxxxx-xxx-xxxx-xxxx-xxxxxxxxxx"]
-        cluster_name                 = "aks-cluster"
-        # cpu_machine_type             = "Standard_D16_v5"
-        # cpu_node_pool_count          = 1
-        # cpu_node_pool_disk_size      = 100
-        # cpu_node_pool_max_count      = 5
-        # cpu_node_pool_min_count      = 1
-        # cpu_os_sku                   = "Ubuntu"
-        # existing_resource_group_name = ""
-        # gpu_machine_type             = "Standard_NC6s_v3"
-        # gpu_node_pool_count          = 2
-        # gpu_node_pool_disk_size      = 100
-        # gpu_node_pool_max_count      = 5
-        # gpu_node_pool_min_count      = 1 
-        install_gpu_operator         = "true"
-        # gpu_operator_namespace       = "gpu-operator"
-        # gpu_operator_version         = "v24.9.0"
-        # gpu_operator_driver_version  = "550.127.05"
-        # install_nim_operator         = "false"
-        # nim_operator_version         = "v1.0.0"
-        # nim_operator_namespace       = "nim-operator"
-        # gpu_os_sku                   = "Ubuntu"
-        # kubernetes_version           = "1.30"
-        location                     = "westus2"
-        ```
 
-4. Initialize the module with below command 
+
+    ```
+    admin_group_object_ids       = ["xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"]
+    ```
+
+
+   Mandatory: provide your subscription_id
+
+
+    ```
+    subscription_id              = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    ```
+
+
+4. Initialize the module with the command:
         
     ```
     terraform init
     ```
 
-5. Run the below command to view the proposed changes
+5. Run this command to view the proposed changes:
 
     ```
     terraform plan -out tfplan
     ```
 
-6. Run the below command to apply the configuration
+6. Run the below command to apply the configuration:
 
     ```
     terraform apply tfplan
     ```
 
-7. Once cluster is created run the below command with aks cluster name and resource group name to get kubeconfig so you are able to run `kubectl` commands
+7. Once cluster is created run the below command with aks cluster name and resource group name to get kubeconfig so you are able to run `kubectl` commands:
 
     ```
-    az aks get-credentials --resource-group aks-cluster-rg --name aks-cluster
+    az aks get-credentials --resource-group aks-cluster-tf-rg --name aks-cluster-tf
     ```
 
 #### Cleaning up / Deleting resources
@@ -148,14 +134,14 @@ If you need additional values added, please open a pull request.        ```
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.4 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~>3.48.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~>4.24.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~>2.19.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~>3.48.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | ~>4.24.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | n/a |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | ~>2.19.0 |
 
@@ -195,9 +181,9 @@ No modules.
 | <a name="input_gpu_node_pool_disk_size"></a> [gpu\_node\_pool\_disk\_size](#input\_gpu\_node\_pool\_disk\_size) | Disk size in GB of nodes in the Default GPU pool | `number` | `100` | no |
 | <a name="input_gpu_node_pool_max_count"></a> [gpu\_node\_pool\_max\_count](#input\_gpu\_node\_pool\_max\_count) | Max count of nodes in Default GPU pool | `number` | `5` | no |
 | <a name="input_gpu_node_pool_min_count"></a> [gpu\_node\_pool\_min\_count](#input\_gpu\_node\_pool\_min\_count) | Min count of number of nodes in Default GPU pool | `number` | `2` | no |
-| <a name="input_gpu_operator_driver_version"></a> [gpu\_operator\_driver\_version](#input\_gpu\_operator\_driver\_version) | The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available. | `string` | `"550.127.05"` | no |
+| <a name="input_gpu_operator_driver_version"></a> [gpu\_operator\_driver\_version](#input\_gpu\_operator\_driver\_version) | The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available. | `string` | `"570.124.06"` | no |
 | <a name="input_gpu_operator_namespace"></a> [gpu\_operator\_namespace](#input\_gpu\_operator\_namespace) | The namespace to deploy the NVIDIA GPU operator into | `string` | `"gpu-operator"` | no |
-| <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | Version of the GPU operator to be installed | `string` | `"v24.9.0"` | no |
+| <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | Version of the GPU operator to be installed | `string` | `"v25.3.0"` | no |
 | <a name="input_gpu_os_sku"></a> [gpu\_os\_sku](#input\_gpu\_os\_sku) | Specifies the OS SKU used by the agent pool. Possible values include: Ubuntu, CBLMariner, Mariner, Windows2019, Windows2022 | `string` | `"Ubuntu"` | no |
 | <a name="input_install_gpu_operator"></a> [install\_gpu\_operator](#input\_install\_gpu\_operator) | Whether to Install GPU Operator. Defaults to false available. | `string` | `"true"` | no |
 | <a name="input_install_nim_operator"></a> [install\_nim\_operator](#input\_install\_nim\_operator) | Whether to Install NIM Operator. Defaults to false available. | `string` | `"false"` | no |

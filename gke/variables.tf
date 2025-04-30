@@ -10,6 +10,7 @@ variable "project_id" {
 
 variable "region" {
   description = "The Region resources (VPC, GKE, Compute Nodes) will be created in"
+  default     = "us-west1"
 }
 
 variable "vpc_enabled" {
@@ -34,11 +35,13 @@ variable "subnetwork" {
 GKE Variables
 ***************************/
 variable "cluster_name" {
+  default     = "gke-cluster-tf"
   description = "Name of the Kubernetes Cluster to provision"
   type        = string
 }
 
 variable "node_zones" {
+  default     = ["us-west1-b"]
   description = "Specify zones to put nodes in (must be in same region defined above)"
   type        = list(any)
 }
@@ -49,7 +52,7 @@ variable "release_channel" {
 }
 
 variable "min_master_version" {
-  default     = "1.30"
+  default     = "1.32"
   description = "The minimum cluster version of the master."
 }
 
@@ -86,7 +89,7 @@ variable "num_cpu_nodes" {
 GKE GPU  Node Pool Variables
 ***************************/
 variable "gpu_type" {
-  default     = "nvidia-tesla-v100"
+  default     = "nvidia-tesla-t4"
   description = "GPU SKU To attach to NVIDIA GPU Node (eg. nvidia-tesla-k80)"
 }
 variable "gpu_min_node_count" {
@@ -138,13 +141,13 @@ variable "install_gpu_operator" {
 }
 
 variable "gpu_operator_version" {
-  default     = "v24.9.0"
+  default     = "v25.3.0"
   description = "Version of the GPU Operator to deploy. Defaults to latest available"
 }
 
 variable "gpu_operator_driver_version" {
   type        = string
-  default     = "550.127.05"
+  default     = "570.124.06"
   description = "The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available"
 }
 
@@ -163,7 +166,7 @@ variable "install_nim_operator" {
 }
 
 variable "nim_operator_version" {
-  default     = "v1.0.0"
+  default     = "v1.0.1"
   description = "Version of the GPU Operator to deploy. Defaults to latest available"
 }
 

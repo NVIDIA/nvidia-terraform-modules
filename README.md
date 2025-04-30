@@ -2,7 +2,13 @@
 
 ## Objective 
 
-NVIDIA Terraform Modules is a reference architecture that can help to create CSP Kubernetes Cluster with NVIDIA GPU and NIM Operators. All the components that have been listed below tested successfully together
+NVIDIA Terraform Modules provide a reference architecture for deploying CSP managed Kubernetes clusters equipped with NVIDIA softwares: 
+
+- NVIDIA GPU Operator.
+- NVIDIA NIM Operator.
+
+All the components listed below have been tested successfully together.
+
 
 ## Life Cycle 
 
@@ -11,8 +17,9 @@ When NVIDIA Terraform Modules is released, the previous release enters maintenan
 
 |  Release  | Status              |
 | :-----: | :--------------:|
-| [24.11.0](https://github.com/NVIDIA/cloud-native-stack/releases/tag/v24.11.0)                   | Generally Available | 
-| [0.7.0](https://github.com/NVIDIA/nvidia-terraform-modules/releases/tag/0.7.0)                  | Maintenance         |
+| [25.4.0](https://github.com/NVIDIA/cloud-native-stack/releases/tag/v25.4.0)                   | Generally Available |
+| [24.11.0](https://github.com/NVIDIA/cloud-native-stack/releases/tag/v24.11.0)                   | Maintenance | 
+
 
 ## Support Matrix
 
@@ -20,25 +27,32 @@ The Kubernetes clusters provisioned by the modules in this repository provide te
 
 If your application does not require a specific version of Kubernetes, we recommend using the latest available version. We also recommend you plan to upgrade your version of Kubernetes at least every 6 months.
 
-Each CSP has its own end of life date for the versions of Kubernetes they support. For more information see: 
 
-- [Amazon EKS release calendar](https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html#kubernetes-release-calendar)
-- [Azure AKS release calendar](https://learn.microsoft.com/en-us/azure/aks/supported-kubernetes-versions?tabs=azure-cli#aks-kubernetes-release-calendar) 
-- [GCP GKE release calendar](https://cloud.google.com/kubernetes-engine/docs/release-schedule#schedule_for_static_no-channel_versions).
+NVIDIA Terraform Modules 25.4.0 Release:
 
-NVIDIA Terraform Modules 24.11.0 Release
-
-| TF Modules               | K8s 1.31                                   | K8s 1.30                                   | K8s 1.29 |
+| TF Modules               | K8s 1.32                                   | K8s 1.31                                   | K8s 1.30 |
 | :---------               | :--------                                  | :-------                                   | :------- |
 | Platforms                | Amazon EKS <br> Azure AKS <br> Google GKE  | Amazon EKS <br> Azure AKS <br> Google GKE  | Amazon EKS <br> Azure AKS <br> Google GKE  |
-| Supported OS             | Ubuntu 22.04 LTS                           | Ubuntu 22.04 LTS                           | Ubuntu 22.04 LTS                           |
-| Containerd               | EKS: 1.7.12 <br> AKS: 1.7.23-1 <br> GKE: 1.7.22 | EKS: 1.7.12 <br> AKS: 1.7.23-1 <br> GKE: 1.7.22 | EKS: 1.7.12 <br> AKS: 1.7.23-1 <br> GKE: 1.7.22 |
-| NVIDIA Container Toolkit | 1.17.0                                     | 1.17.0                                     | 1.17.0                                     |
+| Supported OS             | Ubuntu 24.04 LTS (GKE) <br> Ubuntu 22.04 LTS (AKS/EKS)     | Ubuntu 24.04 LTS (GKE) <br> Ubuntu 22.04 LTS (AKS/EKS)     | Ubuntu 24.04 LTS (GKE) <br> Ubuntu 22.04 LTS (AKS/EKS)     |
+| Kernel                   | EKS: 6.8.0-1024-aws <br> AKS: 5.15.0-1082-azure <br> GKE: 6.8.0-1017-gke | EKS: 6.8.0-1024-aws <br> AKS: 5.15.0-1082-azure <br> GKE: 6.8.0-1017-gke | EKS: 6.8.0-1024-aws <br> AKS: 5.15.0-1082-azure <br> GKE: 6.8.0-1017-gke |
+| Containerd               | EKS: 1.7.24 <br> AKS: 1.7.26-1 <br> GKE: 1.7.24 | EKS: 1.7.24 <br> AKS: 1.7.26-1 <br> GKE: 1.7.24 | EKS: 1.7.24 <br> AKS: 1.7.26-1 <br> GKE: 1.7.24 |
 | CNI                      | CSP dependent                              | CSP dependent                              | CSP dependent                              |
-| NVIDIA GPU Operator      | 24.9.0                                     | 24.9.0                                     | 24.9.0                                     |
-| NVIDIA DataCenter Driver | 550.127.05                                 | 550.127.05                                 | 550.127.05                                 |
-| NVIDIA NIM Operator      | 1.0.0                                      | 1.0.0                                      | 1.0.0                                      | 
-| Helm                     | 3.16.2                                     | 3.16.2                                     | 3.16.2                                     |
+| CSI                      | CSP dependent                              | CSP dependent                              | CSP dependent                              |
+| NVIDIA GPU Operator      | 25.3.0                                     | 25.3.0                                     | 25.3.0                                     |
+| NVIDIA GPU Operator Operands | NVIDIA Container Toolkit: 1.17.5 <br> NVIDIA Device Plugin: 0.17.1 <br> NVIDIA MIG Manager: 0.12.1 <br> NVIDIA DCGM Exporter: 4.1.1-4.0.4 | NVIDIA Container Toolkit: 1.17.5 <br> NVIDIA Device Plugin: 0.17.1 <br> NVIDIA MIG Manager: 0.12.1 <br> NVIDIA DCGM Exporter: 4.1.1-4.0.4 | NVIDIA Container Toolkit: 1.17.5 <br> NVIDIA Device Plugin: 0.17.1 <br> NVIDIA MIG Manager: 0.12.1 <br> NVIDIA DCGM Exporter: 4.1.1-4.0.4 |
+| NVIDIA DataCenter Driver | 570.124.06                                 | 570.124.06                                 | 570.124.06                                 |
+| NVIDIA NIM Operator      | 1.0.1                                      | 1.0.1                                      | 1.0.1                                      | 
+| Helm                     | 3.17.2                                     | 3.17.2                                     | 3.17.2                                     |
+
+
+### CSP Managed K8s Services Life Cycle
+
+Each CSP has its own end of life date for the versions of Kubernetes they support. For more information see:
+
+- [Amazon EKS release calendar](https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html#kubernetes-release-calendar)
+- [Azure AKS release calendar](https://learn.microsoft.com/en-us/azure/aks/supported-kubernetes-versions?tabs=azure-cli#aks-kubernetes-release-calendar)
+- [GCP GKE release calendar](https://cloud.google.com/kubernetes-engine/docs/release-schedule#schedule_for_static_no-channel_versions).
+
 
 ## Getting Started
 
@@ -57,6 +71,9 @@ Clone the repo
   ```
 
 #### Provision a GPU enabled Kubernetes Cluster
+
+Select the CSP managed K8s cluster and follow steps indicated in the corresponding page:
+
 - Create an [EKS Cluster](./eks/README.md)
 - Create an [AKS Cluster](./aks/README.md)
 - Create a [GKE Cluster](./gke/README.md)

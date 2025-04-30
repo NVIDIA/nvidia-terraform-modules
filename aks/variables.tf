@@ -13,6 +13,7 @@ variable "existing_resource_group_name" {
 
 variable "location" {
   description = "The region to create resources in"
+  default     = "eastus"
 }
 
 /****************************
@@ -20,12 +21,12 @@ AKS Variables
 ****************************/
 
 variable "cluster_name" {
-  default     = "aks-cluster"
+  default     = "aks-cluster-tf"
   description = "The name of the AKS Cluster to be created"
 }
 
 variable "kubernetes_version" {
-  default     = "1.30"
+  default     = "1.32"
   description = "Version of Kubernetes to turn on. Run 'az aks get-versions --location <location> --output table' to view all available versions "
 }
 
@@ -76,7 +77,7 @@ variable "gpu_node_pool_max_count" {
   default     = 5
 }
 variable "gpu_machine_type" {
-  default     = "Standard_NC6s_v3"
+  default     = "Standard_NC4as_T4_v3"
   description = "Machine instance type of the AKS GPU node pool"
 }
 variable "gpu_os_sku" {
@@ -92,7 +93,7 @@ variable "install_gpu_operator" {
 }
 
 variable "gpu_operator_version" {
-  default     = "v24.9.0"
+  default     = "v25.3.0"
   description = "Version of the GPU operator to be installed"
 }
 
@@ -104,7 +105,7 @@ variable "gpu_operator_namespace" {
 
 variable "gpu_operator_driver_version" {
   type        = string
-  default     = "550.127.05"
+  default     = "570.124.06"
   description = "The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available."
 }
 
@@ -117,7 +118,7 @@ variable "install_nim_operator" {
 }
 
 variable "nim_operator_version" {
-  default     = "v1.0.0"
+  default     = "v1.0.1"
   description = "Version of the GPU Operator to deploy. Defaults to latest available."
 }
 
@@ -137,4 +138,13 @@ variable "admin_group_object_ids" {
   This is not the email address of the group, the GUID can be found in the Azure panel by searching for the AD Group
   NOTE: You will need Azure "Owner" role (not "Contributor") to attach an AD role to the Kubernetes cluster.
   EOH
+}
+
+
+
+/****************************
+Subscription ID Variables
+****************************/
+variable "subscription_id" {
+  description = "Subscription ID"
 }

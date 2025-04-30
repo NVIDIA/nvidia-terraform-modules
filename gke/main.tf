@@ -145,6 +145,7 @@ resource "google_container_node_pool" "gpu_nodes" {
       part_of    = var.cluster_name
       env        = var.project_id
       managed_by = "terraform"
+      "gke-no-default-nvidia-gpu-device-plugin" = "true"
     }
     workload_metadata_config {
       mode = "GKE_METADATA"

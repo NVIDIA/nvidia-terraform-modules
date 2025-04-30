@@ -1,6 +1,12 @@
 # SPDX-FileCopyrightText: Copyright (c) 2022-2023 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
+
+provider "aws" {
+  region  = var.aws_region # Ensure this variable is properly set
+}
+
+
 provider "helm" {
   kubernetes {
     host                   = data.aws_eks_cluster.eks.endpoint

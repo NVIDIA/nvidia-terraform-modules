@@ -10,8 +10,8 @@ This module was created with and tested on Linux using Bash, it may or may not w
 - VPC Network for GKE Cluster
 - Subnet in VPC
 - GKE Cluster
-- 1x CPU nodepool (defaults to 1x CPU node -- n1-standard-4)
-- 2x GPU nodepool (defaults to 1x V100 -- n1-standard-4 with 1x Tesla V100)
+- 1 CPU nodepool (defaults to 1x CPU node -- n1-standard-4)
+- 1 GPU nodepool (defaults to 2x GPU nodes -- n1-standard-4 with 1x Tesla T4)
 - Installs latest version of GPU Operator via Helm 
 
 ## Prerequisites
@@ -20,8 +20,6 @@ This module was created with and tested on Linux using Bash, it may or may not w
 3. GCP Account & Project where you are permitted to create cloud resources
 4. Terraform (CLI) 
 
-#### Issues
-- None. If you do encounter an issue, please file a GitHub issue.
 
 #### Setup
 
@@ -37,70 +35,45 @@ This module was created with and tested on Linux using Bash, it may or may not w
 
 ## Usage 
 
-1. Run the below command to clone the repo 
+0. Authenticate to GCP:
+
+   ```
+   gcloud auth login
+   ```
+
+
+1. Run this command to clone the repo:
 
     ```
     git clone https://github.com/NVIDIA/nvidia-terraform-modules.git
 
-    cd gke
+    cd nvidia-terraform-modules/gke
     ```
 
 2. Update `terraform.tfvars` to customize a parameter from its default value, please uncomment the line and change the content
 
-    Uncomment the `project_id` and provide your project ID. You can get the `projcet_id` from your [GCP console](#https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects).
+    Mandatory: provide your project ID by updating the parameter `project_id`. 
 
-    Update the `cluster_name`, `region`, and `node_zones`, if needed. 
+You can get the `project_id` from your [GCP console](#https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects).
 
-  - Optional 
-      - Set `true` for `install_nim_operator`, if you want to install NIM Operator
+   ```
+   project_id                          = "xx-xxxx-xxxx"
+   
+   ```
 
-    ```
-    cluster_name                      = "gke-cluster"
-    # cpu_instance_type                 = "n1-standard-4"
-    # cpu_max_node_count                = "5"
-    # cpu_min_node_count                = "1"
-    # disk_size_gb                      = "512"
-    # gpu_count                         = "1"
-    # gpu_instance_tags                 = []
-    #https://cloud.google.com/kubernetes-engine/docs/how-to/gpus#limitations
-    # gpu_instance_type                 = "n1-standard-4"
-    # gpu_max_node_count                = "5"
-    # gpu_min_node_count                = "2"
-    install_gpu_operator              = "true"
-    # gpu_operator_driver_version       = "550.127.05"
-    # gpu_operator_namespace            = "gpu-operator"
-    # gpu_operator_version              = "v24.9.0"
-    # gpu_type                          = "nvidia-tesla-v100"
-    # min_master_version                = "1.30"
-    # install_nim_operator              = "false"
-    # nim_operator_version              = "v1.0.0"
-    # nim_operator_namespace            = "nim-operator"
-    # network                           = ""
-    # num_cpu_nodes                     = 1
-    # num_gpu_nodes                     = 1
-    project_id                        = "xx-xxxx-xxxx"
-    region                            = "us-west1"
-    node_zones                        =  ["us-west1-b"]
-    # release_channel                   = "REGULAR"
-    # subnetwork                        = ""
-    # use_cpu_spot_instances            = false
-    # use_gpu_spot_instances            = false
-    # vpc_enabled                       = true
-    ```
-
-3. Run the below command to make your Google Credentials availalbe the `terraform` executable
+3. Run this command to make your Google Credentials available to the `terraform` executable:
 
     ```
     gcloud auth application-default login
     ```
 
-4. Run the below command to fetch the required Terraform provider plugins
+4. Run this command to fetch the required Terraform provider plugins:
 
     ```
     terraform init
     ```
 
-5. If your credentials are setup correctly, you should see the proposed changes in GCP by running `terraform plan -out tfplan`.
+5. If your credentials are setup correctly, you should see the proposed changes in GCP by running `terraform plan -out tfplan`:
 
     ```
     terraform plan -out tfplan
@@ -108,7 +81,7 @@ This module was created with and tested on Linux using Bash, it may or may not w
 
 ** Note on IAM Permissions:** you need either `Admin` permissions or `Compute Instance Admin (v1)`, `Kubernetes Engine Admin` and `Compute Network Admin (v1)` to run this module. 
 
-6. If this configuration looks approproate run the below command 
+6. If this configuration looks approproate run this command:
 
     ```
     terraform apply tfplan
@@ -125,7 +98,8 @@ This module was created with and tested on Linux using Bash, it may or may not w
     ```
 
 #### Cleaning up / Deleting resources
-1. Run the beloe commands to delete all remaining GCP resources created by this module. You should see `Destroy complete!` message after a few minutes.
+
+1. Run these commands to delete all remaining GCP resources created by this module. You should see `Destroy complete!` message after a few minutes.
 
     ```
     terraform state rm kubernetes_namespace_v1.gpu-operator
@@ -154,7 +128,7 @@ module "nvidia-gke" {
   node_zones = ["us-west1-b"] # Can be any region but ensure your desired machine types/gpus exist
 }
 ```
-In a production environment, we suggest pinning to a known tag of this Terraform module
+
 All configurable options for this module are listed below.
 If you need additional values added, please open a merge request.
 
@@ -162,18 +136,18 @@ If you need additional values added, please open a merge request.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | 4.27.0 |
-| <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | 4.57.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.4 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | 6.27.0 |
+| <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | 6.27.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.27.0 |
-| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | 4.57.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 6.27.0 |
+| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | 6.27.0 |
 | <a name="provider_helm"></a> [helm](#provider\_helm) | n/a |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | n/a |
+| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.19.0 |
 
 ## Modules
 
@@ -213,16 +187,16 @@ No modules.
 | <a name="input_gpu_instance_type"></a> [gpu\_instance\_type](#input\_gpu\_instance\_type) | Machine Type for GPU node pool | `string` | `"n1-standard-4"` | no |
 | <a name="input_gpu_max_node_count"></a> [gpu\_max\_node\_count](#input\_gpu\_max\_node\_count) | Max Number of GPU nodes in GPU nodepool | `string` | `"5"` | no |
 | <a name="input_gpu_min_node_count"></a> [gpu\_min\_node\_count](#input\_gpu\_min\_node\_count) | Min number of GPU nodes in GPU nodepool | `string` | `"2"` | no |
-| <a name="input_gpu_operator_driver_version"></a> [gpu\_operator\_driver\_version](#input\_gpu\_operator\_driver\_version) | The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available | `string` | `"550.127.05"` | no |
+| <a name="input_gpu_operator_driver_version"></a> [gpu\_operator\_driver\_version](#input\_gpu\_operator\_driver\_version) | The NVIDIA Driver version deployed with GPU Operator. Defaults to latest available | `string` | `"570.124.06"` | no |
 | <a name="input_gpu_operator_namespace"></a> [gpu\_operator\_namespace](#input\_gpu\_operator\_namespace) | The namespace to deploy the NVIDIA GPU operator into | `string` | `"gpu-operator"` | no |
-| <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | Version of the GPU Operator to deploy. Defaults to latest available | `string` | `"v24.9.0"` | no |
-| <a name="input_gpu_type"></a> [gpu\_type](#input\_gpu\_type) | GPU SKU To attach to NVIDIA GPU Node (eg. nvidia-tesla-k80) | `string` | `"nvidia-tesla-v100"` | no |
+| <a name="input_gpu_operator_version"></a> [gpu\_operator\_version](#input\_gpu\_operator\_version) | Version of the GPU Operator to deploy. Defaults to latest available | `string` | `"v25.3.0"` | no |
+| <a name="input_gpu_type"></a> [gpu\_type](#input\_gpu\_type) | GPU SKU To attach to NVIDIA GPU Node (eg. nvidia-tesla-k80) | `string` | `"nvidia-tesla-t4"` | no |
 | <a name="input_install_gpu_operator"></a> [install\_gpu\_operator](#input\_install\_gpu\_operator) | Whether to Install GPU Operator. Defaults to false available. | `string` | `"true"` | no |
 | <a name="input_install_nim_operator"></a> [install\_nim\_operator](#input\_install\_nim\_operator) | Whether to Install NIM Operator. Defaults to false available. | `string` | `"false"` | no |
-| <a name="input_min_master_version"></a> [min\_master\_version](#input\_min\_master\_version) | The minimum cluster version of the master. | `string` | `"1.30"` | no |
+| <a name="input_min_master_version"></a> [min\_master\_version](#input\_min\_master\_version) | The minimum cluster version of the master. | `string` | `"1.32"` | no |
 | <a name="input_network"></a> [network](#input\_network) | Network CIDR for VPC | `string` | `""` | no |
 | <a name="input_nim_operator_namespace"></a> [nim\_operator\_namespace](#input\_nim\_operator\_namespace) | The namespace for the GPU operator deployment | `string` | `"nim-operator"` | no |
-| <a name="input_nim_operator_version"></a> [nim\_operator\_version](#input\_nim\_operator\_version) | Version of the GPU Operator to deploy. Defaults to latest available | `string` | `"v1.0.0"` | no |
+| <a name="input_nim_operator_version"></a> [nim\_operator\_version](#input\_nim\_operator\_version) | Version of the GPU Operator to deploy. Defaults to latest available | `string` | `"v1.0.1"` | no |
 | <a name="input_node_zones"></a> [node\_zones](#input\_node\_zones) | Specify zones to put nodes in (must be in same region defined above) | `list(any)` | n/a | yes |
 | <a name="input_num_cpu_nodes"></a> [num\_cpu\_nodes](#input\_num\_cpu\_nodes) | Number of CPU nodes when pool is created | `number` | `1` | no |
 | <a name="input_num_gpu_nodes"></a> [num\_gpu\_nodes](#input\_num\_gpu\_nodes) | Number of GPU nodes when pool is created | `number` | `2` | no |
