@@ -5,3 +5,4 @@
 *.tfstate.*
 crash.log
 tfplan
+.terraform.lock.hcl
