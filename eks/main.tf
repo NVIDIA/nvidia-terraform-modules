@@ -54,7 +54,7 @@ module "eks" {
   cluster_name                    = "tf-${var.cluster_name}"
   cluster_version                 = var.cluster_version
   cluster_endpoint_private_access = true
-  cluster_endpoint_public_access  = true
+  cluster_endpoint_public_access  = false
   create_cloudwatch_log_group     = false
   vpc_id                          = var.existing_vpc_details == null ? module.vpc[0].vpc_id : var.existing_vpc_details.vpc_id
   enable_irsa                     = true
