@@ -50,7 +50,7 @@ resource "google_container_cluster" "gke" {
   network    = var.vpc_enabled ? google_compute_network.gke-vpc[0].name : var.network
   subnetwork = var.vpc_enabled ? google_compute_subnetwork.gke-subnet[0].name : var.subnetwork
 
-  deletion_protection = false
+  deletion_protection = true
   
   // Workload Identity Configuration
   workload_identity_config {
