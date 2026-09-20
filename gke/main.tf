@@ -1,11 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2022-2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
-oauth_scopes = [
-  "https://www.googleapis.com/auth/logging.write",
-  "https://www.googleapis.com/auth/monitoring",
-  "https://www.googleapis.com/auth/devstorage.read_only",
-]
+
 
 
 /***************************
@@ -80,12 +76,7 @@ resource "google_container_node_pool" "cpu_nodes" {
   }
   node_config {
     image_type = "UBUNTU_CONTAINERD"
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/logging.write",
-      "https://www.googleapis.com/auth/monitoring",
-      "https://www.googleapis.com/auth/devstorage.read_only",
-      "https://www.googleapis.com/auth/compute"
-    ]
+    
 
     preemptible  = var.use_cpu_spot_instances
     machine_type = var.cpu_instance_type
@@ -126,12 +117,8 @@ resource "google_container_node_pool" "gpu_nodes" {
   }
   node_config {
     image_type = "UBUNTU_CONTAINERD"
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/logging.write",
-      "https://www.googleapis.com/auth/monitoring",
-      "https://www.googleapis.com/auth/devstorage.read_only",
-      "https://www.googleapis.com/auth/compute"
-    ]
+   
+  
     guest_accelerator {
       type  = var.gpu_type
       count = var.gpu_count
