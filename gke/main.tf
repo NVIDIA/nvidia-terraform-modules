@@ -1,6 +1,13 @@
 # SPDX-FileCopyrightText: Copyright (c) 2022-2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
+oauth_scopes = [
+  "https://www.googleapis.com/auth/logging.write",
+  "https://www.googleapis.com/auth/monitoring",
+  "https://www.googleapis.com/auth/devstorage.read_only",
+]
+
+
 /***************************
 VPC Network Configuration
 ***************************/
