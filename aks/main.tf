@@ -6,6 +6,19 @@ data "azurerm_resource_group" "existing" {
   name  = var.existing_resource_group_name
 }
 
+
+variable "cluster_name" {
+  default     = "aks-cluster-tf"
+  description = "The name of the AKS Cluster to be created"
+  type        = string
+  validation {
+    condition     = can(regex("^[a-zA-Z0-9-]+$", var.cluster_name))
+    error_message = "cluster_name must contain only alphanumeric characters and hyphens."
+  }
+}
+
+
+
 resource "azurerm_resource_group" "aks" {
   count    = var.existing_resource_group_name == null ? 1 : 0
   name     = "${var.cluster_name}-rg"
