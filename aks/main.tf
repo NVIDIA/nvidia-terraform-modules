@@ -7,15 +7,7 @@ data "azurerm_resource_group" "existing" {
 }
 
 
-variable "cluster_name" {
-  default     = "aks-cluster-tf"
-  description = "The name of the AKS Cluster to be created"
-  type        = string
-  validation {
-    condition     = can(regex("^[a-zA-Z0-9-]+$", var.cluster_name))
-    error_message = "cluster_name must contain only alphanumeric characters and hyphens."
-  }
-}
+
 
 
 
